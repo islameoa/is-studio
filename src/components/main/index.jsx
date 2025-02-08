@@ -19,7 +19,7 @@ export default function Index() {
     })
 
     const scale4 = useTransform(scrollYProgress, [0, 1], [1, 4]);
-    //const scale4 = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 4]);
+    //const scale4 = useTransform(scrollYProgress, [0, 0.7, 1], [1, 3, 40]);
     const scale5 = useTransform(scrollYProgress, [0, 1], [1, 5]);
     const scale6 = useTransform(scrollYProgress, [0, 1], [1, 6]);
     const scale8 = useTransform(scrollYProgress, [0, 1], [1, 8]);
@@ -66,7 +66,7 @@ export default function Index() {
                                 <Image
                                     src={src}
                                     fill
-                                    alt="imageeee"
+                                    alt="image"
                                     placeholder='blur'
                                 />
                             </div>
