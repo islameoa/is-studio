@@ -17,6 +17,8 @@
     "sass": "^1.69.7"
   },
   "devDependencies": {
+    "@types/node": "22.13.1",
+    "@types/react": "19.0.8",
     "eslint": "^8",
     "eslint-config-next": "14.0.4"
   }

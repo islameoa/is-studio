@@ -4,6 +4,7 @@ import tiktokLogo from '../../../public/images/tik-tok.png';
 import youtubeLogo from '../../../public/images/youtube.png';
 import xLogo from '../../../public/images/gorjeo.png';
 import Image from 'next/image';
+import React from 'react';
 
 const Footer = () => {
     return (

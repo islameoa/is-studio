@@ -10,7 +10,7 @@ import Image from 'next/image';
 import { useScroll, useTransform, motion} from 'framer-motion';
 import { useRef } from 'react';
 
-export default function Index() {
+export default function Home() {
     
     const container = useRef(null);
     const { scrollYProgress } = useScroll({

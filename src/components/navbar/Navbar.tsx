@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
 import './Navbar.scss';
-import Image from 'next/image';
+import React, { useState, useEffect } from 'react';
 import logoSmall from '../../../public/images/lilogo_square.jpeg';
 import logo from '../../../public/images/header_logo.png';
-import menuIcon from '../../../public/images/menu_icon.png';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -41,27 +41,20 @@ const Navbar = () => {
       onMouseLeave={() => setIsHovering(false)}
     >
       <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
-        <Image
-          src={scrolled ? logo : logoSmall}
-          alt="Logo"
-          className="navbar-logo"
-          placeholder='blur'
-          height={85}
-        />
+        <Link href={'/'}>
+          <Image
+            src={scrolled ? logo : logoSmall}
+            alt="Logo"
+            className="navbar-logo"
+            placeholder='blur'
+            height={85}
+          />
+        </Link>
         <ul className={`nav-links-straight ${animateLinks ? 'animate' : ''} ${!scrolled ? 'show' : ''}`}>
-          <li>Inسpiration,</li>
-          <li>Clothإng,</li>
-          {/* <li>Projectس,</li> */}
-          <li>Cوntact,</li>
-        </ul>
-        <div className={`menu-icon ${scrolled ? 'show' : ''}`} onClick={() => setMenuOpen(!menuOpen)}>
-          <Image src={menuIcon} alt="Menu Icon" width={30} height={30} />
-        </div>
-        <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
-          <li>Projectس</li>
-          <li>Inسpiration</li>
-          <li>Clothإng</li>
-          <li>Cوntact</li>
+          <li><Link href={'/projects'}>Projectس</Link></li>
+          <li><Link href={'/inspiration'}>Inسpiration</Link></li>
+          <li><Link href={'/clothing'}>Clothإng</Link></li>
+          <li><Link href={'/contact'}>Cوntact</Link></li>
         </ul>
         <div
           className={`white-circle ${isHovering ? 'visible' : ''}`}
