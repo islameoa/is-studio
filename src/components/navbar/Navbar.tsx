@@ -29,7 +29,7 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: { clientX: any; clientY: any; }) => {
     setMousePosition({ x: e.clientX, y: e.clientY });
   };
 

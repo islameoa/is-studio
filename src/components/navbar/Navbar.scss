@@ -16,7 +16,7 @@
 }
 
 .navbar-logo {
-  transition: transform 0.3s ease, height 0.3s ease; /* Smooth transition for scaling */
+  transition: transform 0.3s ease, height 0.3s ease;
 }
 
 .navbar-scrolled .navbar-logo {
@@ -24,7 +24,7 @@
 }
 
 .navbar-logo:hover {
-  transform: scale(1.1); /* Slight zoom on hover */
+  transform: scale(1.1);
 }
 
 .navbar-container {
@@ -58,7 +58,6 @@
   padding: 20px;
   transform: translateY(-100%);
   transition: transform 0.3s ease;
-  opacity: 0;
   pointer-events: none;
   border-radius: 10px;
 }
@@ -67,6 +66,8 @@
   display: none;
   cursor: pointer;
   transition: transform 2s ease, opacity 2s ease;
+  font-size: 1.1rem;
+  color: #1b1b1b;
 }
 
 .nav-links-straight li{
@@ -78,7 +79,6 @@
   display: flex;
   gap: 40px;
   transform: translateY(0);
-  opacity: 1;
   pointer-events: auto;
 }
 
@@ -91,26 +91,16 @@
 
 .nav-links.open {
   transform: translateY(0);
-  opacity: 1;
   pointer-events: auto;
 }
 
 .nav-links li:hover {
   transform: scale(1.5);
-  opacity: 1; 
-}
-
-.nav-links li:not(:hover) {
-  opacity: 0.5;
 }
 
 .nav-links-straight li:hover {
   transform: scale(1.5);
   opacity: 1; 
-}
-
-.nav-links-straight li:not(:hover) {
-  opacity: 0.5;
 }
 
 ul {

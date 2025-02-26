@@ -33,7 +33,7 @@
             }
             &:nth-of-type(3){
                 .imageContainer{
-                    top: -20vh;
+                    top: 0vh;
                     left: -25vw;
                     width: 20vw;
                     height: 45vh;
@@ -69,6 +69,26 @@
                     width: 15vw;
                     height: 15vh;
                 }
+            }
+            .text1{
+                width: 40vw;
+                height: 10vh;
+                position: absolute;
+                left: 10vw;
+                top: 0vh;
+                font-size: 6rem;
+                font-family: 'ballet';
+                white-space: 'nowrap';
+            }
+            .text2{
+                width: 30vw;
+                height: 30vh;
+                position: absolute;
+                right: 0vw;
+                top: 55vh;
+                font-size: 4rem;
+                font-family: 'Helvetica Neue';
+                font-weight: lighter;
             }
         }
     }

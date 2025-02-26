@@ -1,4 +1,61 @@
-body{
+@font-face {
+    font-family: 'infinity-black';
+    src: url('/fonts/MADEINFINITY-Black.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'infinity-light';
+    src: url('/fonts/MADEINFINITY-Light.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'infinity-medium';
+    src: url('/fonts/MADEINFINITY-Medium.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'neueMachina';
+    src: url('/fonts/PPNeueMachina-Regular.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'signature';
+    src: url('/fonts/GreatVibes-Regular.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'thomasSabo';
+    src: url('/fonts/Reey-Regular.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ballet';
+    src: url('/fonts/Ballet-Regular-VariableFont_opsz.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'meaCulpa';
+    src: url('/fonts/MeaCulpa-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Helvetica Neue', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
     margin: 0px;
     background-color: #d8d0bb;
 }
