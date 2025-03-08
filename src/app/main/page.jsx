@@ -19,7 +19,7 @@ export default function Home() {
         offset: ['start start', 'end end']
     });
 
-    const scale4 = useTransform(scrollYProgress, [0, 1], [1, 4]);
+    const scale4 = useTransform(scrollYProgress, [0, 1], [1, 1]);
     const scale5 = useTransform(scrollYProgress, [0, 1], [1, 5]);
     const scale6 = useTransform(scrollYProgress, [0, 1], [1, 6]);
     const scale8 = useTransform(scrollYProgress, [0, 1], [1, 8]);
@@ -73,6 +73,8 @@ export default function Home() {
                     </div>
                 </motion.div>
                 <div className={styles.el}>
+                    {/* <p className={styles.text2}>a multidisciplinary creative studio</p> */}
+                    <p className={styles.text1}>Elevated web design</p>
                     <div className={styles.text2} style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                         <span style={{ whiteSpace: 'nowrap', height: '10vh' }}>Built with</span>
                         <div style={{ position: "relative", display: "inline-block", width: "20vw", height: "10vh", overflow: "hidden" }}>
@@ -93,10 +95,7 @@ export default function Home() {
                             </AnimatePresence>
                         </div>
                     </div>
-                    {/* <p className={styles.text2}>a multidisciplinary creative studio</p> */}
-                    <p className={styles.text1}>Elevated web design</p>
                 </div>
-                
             </div>
         </div>
     );
