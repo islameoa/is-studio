@@ -1,9 +1,10 @@
 import './Navbar.scss';
 import React, { useState, useEffect } from 'react';
-import logoSmall from '../../../public/images/lilogo_square.jpeg';
+import logoSmall from '../../../public/images/lilogo_round-nobg.png';
 import logo from '../../../public/images/header_logo.png';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useBackgroundColor } from '../../contexts/BackgroundColorContext';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -11,6 +12,7 @@ const Navbar = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [animateLinks, setAnimateLinks] = useState(false);
+  const { currentBgColor } = useBackgroundColor();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,6 +35,19 @@ const Navbar = () => {
     setMousePosition({ x: e.clientX, y: e.clientY });
   };
 
+  // Function to determine if the background is dark
+  const isDarkBackground = (color: string) => {
+    // Convert hex to RGB
+    const hex = color.replace('#', '');
+    const r = parseInt(hex.substr(0, 2), 16);
+    const g = parseInt(hex.substr(2, 2), 16);
+    const b = parseInt(hex.substr(4, 2), 16);
+    
+    // Calculate luminance
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    return luminance < 0.5;
+  };
+
   return (
     <div
       className="navbar-container"
@@ -40,7 +55,15 @@ const Navbar = () => {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
+      <nav 
+        className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}
+        style={{
+          backgroundColor: `${currentBgColor}aa`, // Add transparency
+          backdropFilter: 'blur(10px)',
+          transition: 'background-color 0.8s ease-in-out',
+          color: isDarkBackground(currentBgColor) ? 'white' : 'black'
+        }}
+      >
         <Link href={'/'}>
           <Image
             src={scrolled ? logo : logoSmall}
@@ -48,10 +71,17 @@ const Navbar = () => {
             className="navbar-logo"
             placeholder='blur'
             height={85}
+            style={{
+              filter: isDarkBackground(currentBgColor) ? 'brightness(0) invert(1)' : 'none'
+            }}
           />
         </Link>
-        <ul className={`nav-links-straight ${animateLinks ? 'animate' : ''} ${!scrolled ? 'show' : ''}`}>
-          <li><Link href={'/projects'}>Projectس</Link></li>
+        <ul 
+          className={`nav-links-straight ${animateLinks ? 'animate' : ''} ${!scrolled ? 'show' : ''}`}
+          style={{
+            color: isDarkBackground(currentBgColor) ? 'white' : 'black'
+          }}
+        >
           <li><Link href={'/inspiration'}>Inسpiration</Link></li>
           <li><Link href={'/clothing'}>Clothإng</Link></li>
           <li><Link href={'/contact'}>Cوntact</Link></li>

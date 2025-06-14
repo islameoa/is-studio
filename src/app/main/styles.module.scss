@@ -76,19 +76,6 @@
                     z-index: 0;
                 }
             }
-            .text1{
-                display: inline-block;
-                width: 30vw;
-                height: 10vh;
-                position: absolute;
-                left: 5vw;
-                top: 15vh;
-                font-size: 6rem;
-                font-family: 'ballet';
-                white-space: 'nowrap';
-                color: white;
-                mix-blend-mode: difference;
-            }
             .text2{
                 display: inline-block;
                 width: 30vw;
@@ -104,4 +91,18 @@
             }
         }
     }
+}
+
+.text1 {
+    display: inline-block;
+    position: absolute;
+    left: 3vw;
+    bottom: 0;
+    font-size: 6rem;
+    font-family: 'ballet';
+    font-weight: lighter;
+    white-space: nowrap;
+    color: white;
+    mix-blend-mode: difference;
+    z-index: 10;
 }
