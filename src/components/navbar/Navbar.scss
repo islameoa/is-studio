@@ -5,14 +5,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #d8d0bb;
+  background-color: var(--color-base);
   transition: background-color 0.3s ease, padding 0.3s ease;
   z-index: 1000;
   padding: 10px 20px;
 }
 
 .navbar-scrolled {
-  background-color: #d8d0bb;
+  background-color: var(--color-base);
 }
 
 .navbar-logo {
@@ -54,7 +54,7 @@
   right: 0;
   width: 10%;
   flex-direction: column;
-  background-color: #d8d0bb;
+  background-color: var(--color-base);
   padding: 20px;
   transform: translateY(-100%);
   transition: transform 0.3s ease;

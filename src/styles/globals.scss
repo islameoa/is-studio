@@ -1,3 +1,5 @@
+@import './generated-colors.scss';
+
 @font-face {
     font-family: 'infinity-black';
     src: url('/fonts/MADEINFINITY-Black.otf') format('truetype');
@@ -57,7 +59,7 @@
 body {
     font-family: 'Helvetica Neue', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
     margin: 0px;
-    background-color: #d8d0bb;
+    background-color: var(--color-base);
 }
 a {
     text-decoration: none;

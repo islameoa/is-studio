@@ -22,7 +22,7 @@ interface BackgroundColorProviderProps {
 }
 
 export const BackgroundColorProvider = ({ children }: BackgroundColorProviderProps) => {
-  const [currentBgColor, setCurrentBgColor] = useState('#d8d0bb');
+  const [currentBgColor, setCurrentBgColor] = useState('#F1ECE4');
 
   return (
     <BackgroundColorContext.Provider value={{ currentBgColor, setCurrentBgColor }}>

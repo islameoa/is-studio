@@ -63,13 +63,13 @@ export default function Home() {
 
             // Check which section is currently in view
             if (scrollY + windowHeight / 2 >= section3Top) {
-                setCurrentBgColor('#251a14'); // Dark brown
+                setCurrentBgColor('#F1ECE4'); // Dark brown
             } else if (scrollY + windowHeight / 2 >= section2Top) {
-                setCurrentBgColor('#023020'); // Dark green
+                setCurrentBgColor('#F1ECE4'); // Dark green
             } else if (scrollY + windowHeight / 2 >= section1Top) {
-                setCurrentBgColor('#6D071A'); // Dark red
+                setCurrentBgColor('#F1ECE4'); // Dark red
             } else {
-                setCurrentBgColor('#d8d0bb'); // Original beige
+                setCurrentBgColor('#F1ECE4'); // Original beige
             }
         };
 
@@ -84,6 +84,42 @@ export default function Home() {
 
     return (
         <>
+            <div 
+                ref={section1Ref}
+                style={{
+                    height: '100vh',
+                    position: 'relative',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '3rem',
+                    fontWeight: 'bold',
+                    color: 'white',
+                    textAlign: 'center',
+                    padding: '2rem'
+                }}
+            >
+                <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1 }}
+                    viewport={{ once: true }}
+                    style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        zIndex: 1
+                    }}
+                >
+                    <video autoPlay loop muted style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
+                        <source src="/videos/is-studio.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </motion.div>
+                <p className={styles.textVideo}>Inspiring through garments</p>
+            </div>
             <div ref={container} className={styles.container}>
                 <div className={styles.sticky}>
                     <motion.div style={{ scale: scale4 }} className={styles.el}>
@@ -125,7 +161,7 @@ export default function Home() {
                         </div>
                     </motion.div>
                     <div className={styles.el}>
-                        {/* <p className={styles.text1}>Elevated web design</p> */}
+                        <p className={styles.text1}>where self-improvement becomes a lifestyle.</p>
                         <div className={styles.text2} style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                             <span style={{ whiteSpace: 'nowrap', height: '10vh' }}>Built with</span>
                             <div style={{ position: "relative", display: "inline-block", width: "20vw", height: "10vh", overflow: "hidden" }}>
@@ -151,43 +187,6 @@ export default function Home() {
             </div>
             
             {/* Color changing sections */}
-            <div 
-                ref={section1Ref}
-                style={{
-                    height: '100vh',
-                    position: 'relative',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '3rem',
-                    fontWeight: 'bold',
-                    color: 'white',
-                    textAlign: 'center',
-                    padding: '2rem'
-                }}
-            >
-                <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: true }}
-                    style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        zIndex: 1
-                    }}
-                >
-                    <video autoPlay loop muted style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
-                        <source src="/videos/is-studio.mov" type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
-                </motion.div>
-                <p className={styles.text1}>Inspiring through garments</p>
-            </div>
-
             <div 
                 ref={section2Ref}
                 style={{

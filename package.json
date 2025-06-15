@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate-colors": "tsx scripts/generate-css-colors.ts",
+    "build": "npm run generate-colors && next build"
   },
   "dependencies": {
     "@studio-freight/lenis": "^1.0.33",
@@ -20,6 +21,7 @@
     "@types/node": "22.13.1",
     "@types/react": "19.0.8",
     "eslint": "^8",
-    "eslint-config-next": "14.0.4"
+    "eslint-config-next": "14.0.4",
+    "tsx": "^4.20.3"
   }
 }
