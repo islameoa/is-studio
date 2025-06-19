@@ -6,6 +6,9 @@ import Picture4 from '../../../public/images/4.jpg';
 import Picture5 from '../../../public/images/5.jpg';
 import Picture6 from '../../../public/images/6.jpg';
 import Picture7 from '../../../public/images/7.jpeg';
+import value_of_mom from '../../../public/images/value_of_momAI.png';
+import zarbiya_bag from '../../../public/images/zarbiya_bag.png';
+import jellaba from '../../../public/images/jellaba.jpeg';
 import Image from 'next/image';
 import { useScroll, useTransform, motion, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
@@ -118,7 +121,9 @@ export default function Home() {
                         Your browser does not support the video tag.
                     </video>
                 </motion.div>
-                <p className={styles.textVideo}>Inspiring through garments</p>
+                {/* <p className={styles.textVideo1}>“A new language of self-expression”</p> */}
+                <p className={styles.textVideo2}>Arab heritage meets modern design.</p>
+                <button type="button" className={styles.button}>EXPLORE</button>
             </div>
             <div ref={container} className={styles.container}>
                 <div className={styles.sticky}>
@@ -207,7 +212,19 @@ export default function Home() {
                     transition={{ duration: 1 }}
                     viewport={{ once: true }}
                 >
-                    Innovation Through Design
+                <div className={styles.imageLayout}>
+                    <div className={styles.leftImageContainer}>
+                        <Image src={value_of_mom} fill alt="Imagen 1" placeholder="blur" className={styles.image} />
+                    </div>
+                    <div className={styles.rightImageColumn}>
+                        <div className={styles.rightImageContainer}>
+                            <Image src={zarbiya_bag} fill alt="Imagen 2" placeholder="blur" className={styles.image} />
+                        </div>
+                        <div className={styles.rightImageContainer}>
+                            <Image src={jellaba} fill alt="Imagen 3" placeholder="blur" className={styles.image} />
+                        </div>
+                    </div>
+                </div>
                 </motion.div>
             </div>
             
@@ -231,7 +248,7 @@ export default function Home() {
                     transition={{ duration: 1 }}
                     viewport={{ once: true }}
                 >
-                    Building Tomorrow's Web
+                    AAAAA
                 </motion.div>
             </div>
         </>
