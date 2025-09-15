@@ -13,6 +13,7 @@ import Image from 'next/image';
 import { useScroll, useTransform, motion, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { useBackgroundColor } from '../../contexts/BackgroundColorContext';
+import { CSS_COLORS } from '../../constants/css-colors';
 
 const words = ['purpose', 'إحسان', 'love', 'بركة', 'meaning', 'توكل', 'wisdom', 'تقوى'];
 
@@ -25,6 +26,11 @@ export default function Home() {
     const { scrollYProgress } = useScroll({
         target: container,
         offset: ['start start', 'end end']
+    });
+
+    const { scrollYProgress: parallaxScrollProgress } = useScroll({
+        target: section2Ref,
+        offset: ['start end', 'end start']
     });
 
     // Function to determine if the background is dark
@@ -61,21 +67,27 @@ export default function Home() {
             const section1Top = section1Ref.current?.offsetTop || 0;
             const section2Top = section2Ref.current?.offsetTop || 0;
             const section3Top = section3Ref.current?.offsetTop || 0;
+            const containerTop = container.current?.offsetTop || 0;
+            
             const scrollY = window.scrollY;
             const windowHeight = window.innerHeight;
-
-            // Check which section is currently in view
-            if (scrollY + windowHeight / 2 >= section3Top) {
-                setCurrentBgColor('#F1ECE4'); // Dark brown
-            } else if (scrollY + windowHeight / 2 >= section2Top) {
-                setCurrentBgColor('#F1ECE4'); // Dark green
-            } else if (scrollY + windowHeight / 2 >= section1Top) {
-                setCurrentBgColor('#F1ECE4'); // Dark red
+            const scrollCenter = scrollY + windowHeight / 2;
+    
+            if (scrollCenter >= containerTop) {
+                setCurrentBgColor(CSS_COLORS.accent);
+            } else if (scrollCenter >= section3Top) {
+                setCurrentBgColor(CSS_COLORS.primary);
+            } else if (scrollCenter >= section2Top) {
+                setCurrentBgColor('#F1ECE4');
+            } else if (scrollCenter >= section1Top) {
+                setCurrentBgColor('#F1ECE4');
             } else {
-                setCurrentBgColor('#F1ECE4'); // Original beige
+                setCurrentBgColor('#F1ECE4');
             }
         };
 
+        handleScroll();
+        
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, [setCurrentBgColor]);
@@ -125,6 +137,187 @@ export default function Home() {
                 <p className={styles.textVideo2}>Arab heritage meets modern design.</p>
                 <button type="button" className={styles.button}>EXPLORE</button>
             </div>
+
+            {/*PARALLAX SECTION*/}
+            <div 
+                ref={section2Ref}
+                style={{
+                    height: '150vh', // Más altura para mejor efecto parallax
+                    position: 'relative',
+                    overflow: 'hidden',
+                    padding: '2rem'
+                }}
+            >
+                <p style={{fontFamily:'canela', fontSize:'4rem'}}>Introducing the RIHLA COLLECTION - رحلة</p>
+                <p style={{ fontSize: '2rem', marginBottom: '2rem', fontFamily: 'ModernSerif', fontWeight: 'lighter', color: '#333' }}>
+                    A collection inspired by the rich heritage of Morocco, <br></br> blending traditional craftsmanship with modern aesthetics.
+                </p>
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 1 }}
+                    viewport={{ once: true }}
+                    style={{
+                        position: 'relative',
+                        height: '100%',
+                        display: 'grid',
+                        gridTemplateColumns: '1fr 1fr 1fr',
+                        gap: '2rem',
+                        padding: '2rem'
+                    }}
+                >
+                    {/* Columna 1 */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                        <motion.div
+                            style={{
+                                position: 'relative',
+                                width: '100%',
+                                height: '40vh',
+                                borderRadius: '15px',
+                                overflow: 'hidden',
+                                y: useTransform(parallaxScrollProgress, [0, 1], [0, -100])
+                            }}
+                        >
+                            <Image 
+                                src={Picture2} 
+                                fill 
+                                alt="image" 
+                                placeholder='blur' 
+                                style={{ objectFit: 'cover' }}
+                            />
+                        </motion.div>
+                        
+                        <motion.div
+                            style={{
+                                position: 'relative',
+                                width: '100%',
+                                height: '50vh',
+                                borderRadius: '15px',
+                                overflow: 'hidden',
+                                y: useTransform(parallaxScrollProgress, [0, 1], [0, 150])
+                            }}
+                        >
+                            <Image 
+                                src={Picture3} 
+                                fill 
+                                alt="image" 
+                                placeholder='blur' 
+                                style={{ objectFit: 'cover' }}
+                            />
+                        </motion.div>
+                    </div>
+
+                    {/* Columna 2 */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', paddingTop: '4rem' }}>
+                        <motion.div
+                            style={{
+                                position: 'relative',
+                                width: '100%',
+                                height: '60vh',
+                                borderRadius: '15px',
+                                overflow: 'hidden',
+                                y: useTransform(parallaxScrollProgress, [0, 1], [0, -200])
+                            }}
+                        >
+                            <Image 
+                                src={Picture4} 
+                                fill 
+                                alt="image" 
+                                placeholder='blur' 
+                                style={{ objectFit: 'cover' }}
+                            />
+                        </motion.div>
+                        
+                        <motion.div
+                            style={{
+                                position: 'relative',
+                                width: '100%',
+                                height: '35vh',
+                                borderRadius: '15px',
+                                overflow: 'hidden',
+                                y: useTransform(parallaxScrollProgress, [0, 1], [0, 100])
+                            }}
+                        >
+                            <Image 
+                                src={Picture5} 
+                                fill 
+                                alt="image" 
+                                placeholder='blur' 
+                                style={{ objectFit: 'cover' }}
+                            />
+                        </motion.div>
+                    </div>
+
+                    {/* Columna 3 */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', paddingTop: '2rem' }}>
+                        <motion.div
+                            style={{
+                                position: 'relative',
+                                width: '100%',
+                                height: '45vh',
+                                borderRadius: '15px',
+                                overflow: 'hidden',
+                                y: useTransform(parallaxScrollProgress, [0, 1], [0, -50])
+                            }}
+                        >
+                            <Image 
+                                src={Picture6} 
+                                fill 
+                                alt="image" 
+                                placeholder='blur' 
+                                style={{ objectFit: 'cover' }}
+                            />
+                        </motion.div>
+                        
+                        <motion.div
+                            style={{
+                                position: 'relative',
+                                width: '100%',
+                                height: '55vh',
+                                borderRadius: '15px',
+                                overflow: 'hidden',
+                                y: useTransform(parallaxScrollProgress, [0, 1], [0, 200])
+                            }}
+                        >
+                            <Image 
+                                src={Picture7} 
+                                fill 
+                                alt="image" 
+                                placeholder='blur' 
+                                style={{ objectFit: 'cover' }}
+                            />
+                        </motion.div>
+                    </div>
+                </motion.div>
+            </div>
+
+            <div 
+                ref={section3Ref}
+                style={{
+                    height: '100vh',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '3rem',
+                    fontWeight: 'bold',
+                    color: 'white',
+                    textAlign: 'center',
+                    padding: '2rem'
+                }}
+            >
+                <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1 }}
+                    viewport={{ once: true }}
+                >
+                    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%'}}>
+                        <p style={{fontFamily:'canela', fontSize:'4rem', float:'right'}}>Welcome to IS___STUDIO</p>
+                        <p style={{fontFamily:'NeueHaas', fontSize:'2rem'}}>A modern expression of tradition. <br></br> Every piece merges Moroccan craft, Arab elegance, and minimalist clarity.  <br></br> Designed to inspire movement—toward yourself, your goals, your essence.</p>
+                    </div>
+                </motion.div>
+            </div>
+            
             <div ref={container} className={styles.container}>
                 <div className={styles.sticky}>
                     <motion.div style={{ scale: scale4 }} className={styles.el}>
@@ -189,67 +382,6 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            {/* Color changing sections */}
-            <div 
-                ref={section2Ref}
-                style={{
-                    height: '100vh',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '3rem',
-                    fontWeight: 'bold',
-                    color: 'white',
-                    textAlign: 'center',
-                    padding: '2rem'
-                }}
-            >
-                <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: true }}
-                >
-                <div className={styles.imageLayout}>
-                    <div className={styles.leftImageContainer}>
-                        <Image src={value_of_mom} fill alt="Imagen 1" placeholder="blur" className={styles.image} />
-                    </div>
-                    <div className={styles.rightImageColumn}>
-                        <div className={styles.rightImageContainer}>
-                            <Image src={zarbiya_bag} fill alt="Imagen 2" placeholder="blur" className={styles.image} />
-                        </div>
-                        <div className={styles.rightImageContainer}>
-                            <Image src={jellaba} fill alt="Imagen 3" placeholder="blur" className={styles.image} />
-                        </div>
-                    </div>
-                </div>
-                </motion.div>
-            </div>
-            
-            <div 
-                ref={section3Ref}
-                style={{
-                    height: '100vh',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '3rem',
-                    fontWeight: 'bold',
-                    color: 'white',
-                    textAlign: 'center',
-                    padding: '2rem'
-                }}
-            >
-                <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: true }}
-                >
-                    AAAAA
-                </motion.div>
             </div>
         </>
     );

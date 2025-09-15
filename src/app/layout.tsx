@@ -4,13 +4,10 @@ import Lenis from '@studio-freight/lenis';
 import Navbar from '../components/navbar/Navbar';
 import Footer from '../components/footer/Footer';
 import { BackgroundColorProvider } from '../contexts/BackgroundColorContext';
+import { AudioProvider } from '../contexts/BackgroundAudioContext';
 import '../styles/globals.scss';
 import React from 'react';
-
-// export const metadata = {
-//     title: 'Iسstudio',
-//     description: 'Iسstudio is a design studio based Barcelona. Inspiration, websites, apps, and branding for businesses and individuals.',
-// }
+import AudioButton from '../components/audioButton/AudioButton';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     useEffect(() => {
@@ -28,9 +25,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <html lang="es">
             <body>
                 <BackgroundColorProvider>
-                    <Navbar />
-                    <main className={'main'}>{children}</main>
-                    <Footer />
+                    <AudioProvider audioSrc="/audio/Arabian_oud_relaxing_music_meditation.mp3">
+                        <Navbar />
+                        <main className={'main'}>{children}</main>
+                        <Footer />
+                        <AudioButton />
+                    </AudioProvider>
                 </BackgroundColorProvider>
             </body>
         </html>
