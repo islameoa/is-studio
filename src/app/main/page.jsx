@@ -1,3 +1,4 @@
+'use client';
 import styles from './styles.module.scss';
 import Picture1 from '../../../public/images/logo_h_big_nobg.png';
 import Picture2 from '../../../public/images/2.jpeg';
