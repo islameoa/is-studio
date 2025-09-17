@@ -35,6 +35,14 @@ const Navbar = () => {
     setMousePosition({ x: e.clientX, y: e.clientY });
   };
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   // Function to determine if the background is dark
   const isDarkBackground = (color: string) => {
     // Convert hex to RGB
@@ -42,7 +50,7 @@ const Navbar = () => {
     const r = parseInt(hex.substr(0, 2), 16);
     const g = parseInt(hex.substr(2, 2), 16);
     const b = parseInt(hex.substr(4, 2), 16);
-    
+        
     // Calculate luminance
     const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
     return luminance < 0.5;
@@ -64,7 +72,7 @@ const Navbar = () => {
           color: isDarkBackground(currentBgColor) ? 'white' : 'black'
         }}
       >
-        <Link href={'/'}>
+        <Link href={'/'} onClick={closeMenu}>
           <Image
             src={scrolled ? logo : logoSmall}
             alt="Logo"
@@ -76,6 +84,8 @@ const Navbar = () => {
             }}
           />
         </Link>
+
+        {/* Desktop Navigation */}
         <ul 
           className={`nav-links-straight ${animateLinks ? 'animate' : ''} ${!scrolled ? 'show' : ''}`}
           style={{
@@ -86,6 +96,48 @@ const Navbar = () => {
           <li><Link href={'/clothing'}>Clothإng</Link></li>
           <li><Link href={'/contact'}>Cوntact</Link></li>
         </ul>
+
+        {/* Mobile Hamburger Menu */}
+        <div 
+          className={`hamburger ${menuOpen ? 'open' : ''}`}
+          onClick={toggleMenu}
+          style={{
+            color: isDarkBackground(currentBgColor) ? 'white' : 'black'
+          }}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        {/* Mobile Navigation Menu */}
+        <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
+          <ul 
+            className="mobile-nav-links"
+            style={{
+              backgroundColor: `${currentBgColor}ee`,
+              backdropFilter: 'blur(10px)',
+              color: isDarkBackground(currentBgColor) ? 'white' : 'black'
+            }}
+          >
+            <li>
+              <Link href={'/inspiration'} onClick={closeMenu}>
+                Inسpiration
+              </Link>
+            </li>
+            <li>
+              <Link href={'/clothing'} onClick={closeMenu}>
+                Clothإng
+              </Link>
+            </li>
+            <li>
+              <Link href={'/contact'} onClick={closeMenu}>
+                Cوntact
+              </Link>
+            </li>
+          </ul>
+        </div>
+
         <div
           className={`white-circle ${isHovering ? 'visible' : ''}`}
           style={{

@@ -106,6 +106,7 @@ export default function Home() {
                     height: '100vh',
                     position: 'relative',
                     display: 'flex',
+                    flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
                     fontSize: '3rem',
@@ -139,157 +140,56 @@ export default function Home() {
                 <button type="button" className={styles.button}>EXPLORE</button>
             </div>
 
-            {/*PARALLAX SECTION*/}
-            <div 
-                ref={section2Ref}
-                style={{
-                    height: '150vh', // Más altura para mejor efecto parallax
-                    position: 'relative',
-                    overflow: 'hidden',
-                    padding: '2rem'
-                }}
+            {/* PARALLAX SECTION */}
+            <div ref={section2Ref} className={styles.parallaxSection}>
+            <p className={styles.collectionTitle}>
+                Introducing the RIHLA COLLECTION - رحلة
+            </p>
+            <p className={styles.collectionSubtitle}>
+                A collection inspired by the rich heritage of Morocco, <br />
+                blending traditional craftsmanship with modern aesthetics.
+            </p>
+
+            <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+                viewport={{ once: true }}
+                className={styles.parallaxGrid}
             >
-                <p style={{fontFamily:'canela', fontSize:'4rem'}}>Introducing the RIHLA COLLECTION - رحلة</p>
-                <p style={{ fontSize: '2rem', marginBottom: '2rem', fontFamily: 'ModernSerif', fontWeight: 'lighter', color: '#333' }}>
-                    A collection inspired by the rich heritage of Morocco, <br></br> blending traditional craftsmanship with modern aesthetics.
-                </p>
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: true }}
-                    style={{
-                        position: 'relative',
-                        height: '100%',
-                        display: 'grid',
-                        gridTemplateColumns: '1fr 1fr 1fr',
-                        gap: '2rem',
-                        padding: '2rem'
-                    }}
-                >
-                    {/* Columna 1 */}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                        <motion.div
-                            style={{
-                                position: 'relative',
-                                width: '100%',
-                                height: '40vh',
-                                borderRadius: '15px',
-                                overflow: 'hidden',
-                                y: useTransform(parallaxScrollProgress, [0, 1], [0, -100])
-                            }}
-                        >
-                            <Image 
-                                src={Picture2} 
-                                fill 
-                                alt="image" 
-                                placeholder='blur' 
-                                style={{ objectFit: 'cover' }}
-                            />
-                        </motion.div>
-                        
-                        <motion.div
-                            style={{
-                                position: 'relative',
-                                width: '100%',
-                                height: '50vh',
-                                borderRadius: '15px',
-                                overflow: 'hidden',
-                                y: useTransform(parallaxScrollProgress, [0, 1], [0, 150])
-                            }}
-                        >
-                            <Image 
-                                src={Picture3} 
-                                fill 
-                                alt="image" 
-                                placeholder='blur' 
-                                style={{ objectFit: 'cover' }}
-                            />
-                        </motion.div>
-                    </div>
-
-                    {/* Columna 2 */}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', paddingTop: '4rem' }}>
-                        <motion.div
-                            style={{
-                                position: 'relative',
-                                width: '100%',
-                                height: '60vh',
-                                borderRadius: '15px',
-                                overflow: 'hidden',
-                                y: useTransform(parallaxScrollProgress, [0, 1], [0, -200])
-                            }}
-                        >
-                            <Image 
-                                src={Picture4} 
-                                fill 
-                                alt="image" 
-                                placeholder='blur' 
-                                style={{ objectFit: 'cover' }}
-                            />
-                        </motion.div>
-                        
-                        <motion.div
-                            style={{
-                                position: 'relative',
-                                width: '100%',
-                                height: '35vh',
-                                borderRadius: '15px',
-                                overflow: 'hidden',
-                                y: useTransform(parallaxScrollProgress, [0, 1], [0, 100])
-                            }}
-                        >
-                            <Image 
-                                src={Picture5} 
-                                fill 
-                                alt="image" 
-                                placeholder='blur' 
-                                style={{ objectFit: 'cover' }}
-                            />
-                        </motion.div>
-                    </div>
-
-                    {/* Columna 3 */}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', paddingTop: '2rem' }}>
-                        <motion.div
-                            style={{
-                                position: 'relative',
-                                width: '100%',
-                                height: '45vh',
-                                borderRadius: '15px',
-                                overflow: 'hidden',
-                                y: useTransform(parallaxScrollProgress, [0, 1], [0, -50])
-                            }}
-                        >
-                            <Image 
-                                src={Picture6} 
-                                fill 
-                                alt="image" 
-                                placeholder='blur' 
-                                style={{ objectFit: 'cover' }}
-                            />
-                        </motion.div>
-                        
-                        <motion.div
-                            style={{
-                                position: 'relative',
-                                width: '100%',
-                                height: '55vh',
-                                borderRadius: '15px',
-                                overflow: 'hidden',
-                                y: useTransform(parallaxScrollProgress, [0, 1], [0, 200])
-                            }}
-                        >
-                            <Image 
-                                src={Picture7} 
-                                fill 
-                                alt="image" 
-                                placeholder='blur' 
-                                style={{ objectFit: 'cover' }}
-                            />
-                        </motion.div>
-                    </div>
+                {/* Columna 1 */}
+                <div className={`${styles.col} ${styles.col1}`}>
+                <motion.div className={styles.imgBox} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -100]) }}>
+                    <Image src={Picture2} fill alt="image" placeholder="blur" className={styles.img} />
                 </motion.div>
+
+                <motion.div className={styles.imgBoxTall} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, 150]) }}>
+                    <Image src={Picture3} fill alt="image" placeholder="blur" className={styles.img} />
+                </motion.div>
+                </div>
+
+                {/* Columna 2 */}
+                <div className={`${styles.col} ${styles.col2}`}>
+                <motion.div className={styles.imgBoxLarge} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -200]) }}>
+                    <Image src={Picture4} fill alt="image" placeholder="blur" className={styles.img} />
+                </motion.div>
+
+                <motion.div className={styles.imgBoxSmall} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, 100]) }}>
+                    <Image src={Picture5} fill alt="image" placeholder="blur" className={styles.img} />
+                </motion.div>
+                </div>
+
+                {/* Columna 3 */}
+                <div className={`${styles.col} ${styles.col3}`}>
+                <motion.div className={styles.imgBoxMedium} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -50]) }}>
+                    <Image src={Picture6} fill alt="image" placeholder="blur" className={styles.img} />
+                </motion.div>
+
+                <motion.div className={styles.imgBoxBig} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, 200]) }}>
+                    <Image src={Picture7} fill alt="image" placeholder="blur" className={styles.img} />
+                </motion.div>
+                </div>
+            </motion.div>
             </div>
 
             <div 

@@ -9,11 +9,6 @@
   justify-content: flex-end;
   width: 60px;
   height: auto;
-
-  @media (max-width: 768px) {
-    bottom: 1rem;
-    right: 1rem;
-  }
 }
 
 .volumeControl {
@@ -107,23 +102,6 @@
     &:active {
       cursor: grabbing;
       transform: scale(1.2);
-    }
-  }
-
-  // Área de interacción más grande para móviles
-  @media (max-width: 768px) {
-    width: 120px;
-    height: 8px;
-
-    &::-webkit-slider-thumb {
-      width: 24px;
-      height: 24px;
-      top: -8px;
-    }
-
-    &::-moz-range-thumb {
-      width: 24px;
-      height: 24px;
     }
   }
 }
