@@ -8,6 +8,7 @@ import { AudioProvider } from '../contexts/BackgroundAudioContext';
 import '../styles/globals.scss';
 import React from 'react';
 import AudioButton from '../components/audioButton/AudioButton';
+import { Analytics } from '@vercel/analytics/next';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     useEffect(() => {
@@ -32,6 +33,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                         <AudioButton />
                     </AudioProvider>
                 </BackgroundColorProvider>
+                <Analytics />
             </body>
         </html>
     );

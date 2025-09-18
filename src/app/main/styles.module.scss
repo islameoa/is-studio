@@ -210,6 +210,31 @@
     line-height: 1.5;
   }
   
+  .parallaxSection {
+    height: 150vh;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+  }
+  
+  /* Títulos */
+  .collectionTitle {
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .collectionSubtitle {
+    font-size: 1.25rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  /* Grid Container */
   .parallaxGrid {
     position: relative;
     height: 100%;
@@ -219,68 +244,235 @@
     padding: 2rem;
   }
   
-  .column {
+  /* Columnas */
+  .parallaxColumn {
     display: flex;
     flex-direction: column;
     gap: 2rem;
   }
   
-  .col2 {
+  .parallaxColumnMiddle {
     padding-top: 4rem;
   }
   
-  .col3 {
+  .parallaxColumnLast {
     padding-top: 2rem;
   }
   
-  .imgBox,
-  .imgBoxTall,
-  .imgBoxLarge,
-  .imgBoxSmall,
-  .imgBoxMedium,
-  .imgBoxBig {
+  /* Cajas de Imágenes - Desktop */
+  .imgBoxSmall {
     position: relative;
     width: 100%;
+    height: 40vh;
     border-radius: 15px;
     overflow: hidden;
   }
   
-  .imgBox { height: 40vh; }
-  .imgBoxTall { height: 50vh; }
-  .imgBoxLarge { height: 60vh; }
-  .imgBoxSmall { height: 35vh; }
-  .imgBoxMedium { height: 45vh; }
-  .imgBoxBig { height: 55vh; }
-  
-  .img {
-    object-fit: cover;
+  .imgBoxLarge {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    border-radius: 15px;
+    overflow: hidden;
   }
   
+  .imgBoxMedium {
+    position: relative;
+    width: 100%;
+    height: 45vh;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+  .imgBoxLargePlus {
+    position: relative;
+    width: 100%;
+    height: 55vh;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+  .imgBoxExtraLarge {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+  .imgBoxExtraSmall {
+    position: relative;
+    width: 100%;
+    height: 35vh;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+  /* Columnas solo para móvil */
+  .mobileOnlyColumn {
+    display: none;
+  }
+  
+  .imgBoxMobile {
+    position: relative;
+    width: 100%;
+    height: 45vh;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+  /* Media Queries - Tablet */
+  @media (max-width: 1024px) {
+    .parallaxSection {
+      height: 120vh;
+      padding: 1.5rem;
+    }
+    
+    .collectionTitle {
+      font-size: 2.5rem;
+    }
+    
+    .collectionSubtitle {
+      font-size: 1.1rem;
+    }
+    
+    .parallaxGrid {
+      gap: 1.5rem;
+      padding: 1.5rem;
+    }
+    
+    .imgBoxSmall {
+      height: 35vh;
+    }
+    
+    .imgBoxLarge {
+      height: 45vh;
+    }
+    
+    .imgBoxMedium {
+      height: 40vh;
+    }
+    
+    .imgBoxLargePlus {
+      height: 50vh;
+    }
+    
+    .imgBoxExtraLarge {
+      height: 55vh;
+    }
+    
+    .imgBoxExtraSmall {
+      height: 30vh;
+    }
+  }
+  
+  /* Media Queries - Móvil */
   @media (max-width: 768px) {
+    .parallaxSection {
+      height: auto;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+    
+    .collectionTitle {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .collectionSubtitle {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      padding: 0 1rem;
+    }
+    
+    /* Grid de 2 columnas en móvil */
     .parallaxGrid {
       grid-template-columns: 1fr 1fr;
       gap: 1rem;
       padding: 1rem;
-      .col {
-        padding-top: 0 !important;
-      }
     }
-  
-    .collectionTitle {
-      font-size: 2rem;
+    
+    /* Ajustar padding de columnas en móvil */
+    .parallaxColumnMiddle,
+    .parallaxColumnLast {
+      padding-top: 0;
     }
-  
-    .collectionSubtitle {
-      font-size: 1.5rem;
+    
+    /* Ocultar columna del medio en móvil */
+    .parallaxColumnMiddle {
+      display: none;
     }
-  
-    .imgBox,
-    .imgBoxTall,
-    .imgBoxLarge,
+    
+    /* Mostrar columnas móviles */
+    .mobileOnlyColumn {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    /* Ajustar alturas para móvil */
     .imgBoxSmall,
+    .imgBoxLarge,
     .imgBoxMedium,
-    .imgBoxBig {
+    .imgBoxLargePlus,
+    .imgBoxMobile {
+      height: 35vh;
+    }
+    
+    .parallaxColumn {
+      gap: 1rem;
+    }
+  }
+  
+  /* Media Queries - Móvil pequeño */
+  @media (max-width: 480px) {
+    .collectionTitle {
+      font-size: 1.75rem;
+    }
+    
+    .collectionSubtitle {
+      font-size: 0.9rem;
+    }
+    
+    .parallaxGrid {
+      gap: 0.75rem;
+      padding: 0.5rem;
+    }
+    
+    .imgBoxSmall,
+    .imgBoxLarge,
+    .imgBoxMedium,
+    .imgBoxLargePlus,
+    .imgBoxMobile {
       height: 30vh;
+      border-radius: 10px;
+    }
+  }
+  
+  /* Optimización para aspect ratio en móvil */
+  @media (max-width: 768px) and (orientation: portrait) {
+    .imgBoxSmall,
+    .imgBoxLarge,
+    .imgBoxMedium,
+    .imgBoxLargePlus,
+    .imgBoxMobile {
+      height: 40vw;
+      min-height: 200px;
+      max-height: 35vh;
+    }
+  }
+  
+  @media (max-width: 768px) and (orientation: landscape) {
+    .parallaxSection {
+      height: auto;
+    }
+    
+    .imgBoxSmall,
+    .imgBoxLarge,
+    .imgBoxMedium,
+    .imgBoxLargePlus,
+    .imgBoxMobile {
+      height: 50vh;
     }
   }  
 

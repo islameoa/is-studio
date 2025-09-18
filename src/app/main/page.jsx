@@ -130,7 +130,7 @@ export default function Home() {
                         zIndex: 1
                     }}
                 >
-                    <video autoPlay loop muted style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
+                    <video autoPlay loop muted webkit-playsinline="true" style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
                         <source src="/videos/is-studio.mp4" type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
@@ -149,7 +149,7 @@ export default function Home() {
                 A collection inspired by the rich heritage of Morocco, <br />
                 blending traditional craftsmanship with modern aesthetics.
             </p>
-
+            
             <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -158,35 +158,103 @@ export default function Home() {
                 className={styles.parallaxGrid}
             >
                 {/* Columna 1 */}
-                <div className={`${styles.col} ${styles.col1}`}>
-                <motion.div className={styles.imgBox} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -100]) }}>
-                    <Image src={Picture2} fill alt="image" placeholder="blur" className={styles.img} />
+                <div className={styles.parallaxColumn}>
+                <motion.div className={styles.imgBoxSmall} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -100]) }}
+                >
+                    <Image 
+                    src={Picture2} 
+                    fill 
+                    alt="image" 
+                    placeholder='blur' 
+                    style={{ objectFit: 'cover' }} 
+                    />
                 </motion.div>
-
-                <motion.div className={styles.imgBoxTall} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, 150]) }}>
-                    <Image src={Picture3} fill alt="image" placeholder="blur" className={styles.img} />
+                
+                <motion.div className={styles.imgBoxLarge} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -100]) }}
+                >
+                    <Image 
+                    src={Picture3} 
+                    fill 
+                    alt="image" 
+                    placeholder='blur' 
+                    style={{ objectFit: 'cover' }} 
+                    />
                 </motion.div>
                 </div>
 
-                {/* Columna 2 */}
-                <div className={`${styles.col} ${styles.col2}`}>
-                <motion.div className={styles.imgBoxLarge} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -200]) }}>
-                    <Image src={Picture4} fill alt="image" placeholder="blur" className={styles.img} />
+                {/* Columna 2 - Se oculta en móvil y se redistribuye */}
+                <div className={`${styles.parallaxColumn} ${styles.parallaxColumnMiddle}`}>
+                <motion.div className={styles.imgBoxExtraLarge} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -200]) }}
+                >
+                    <Image 
+                    src={Picture4} 
+                    fill 
+                    alt="image" 
+                    placeholder='blur' 
+                    style={{ objectFit: 'cover' }} 
+                    />
                 </motion.div>
-
-                <motion.div className={styles.imgBoxSmall} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, 100]) }}>
-                    <Image src={Picture5} fill alt="image" placeholder="blur" className={styles.img} />
+                
+                <motion.div className={styles.imgBoxExtraSmall} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, 100]) }}
+                >
+                    <Image 
+                    src={Picture5} 
+                    fill 
+                    alt="image" 
+                    placeholder='blur' 
+                    style={{ objectFit: 'cover' }} 
+                    />
                 </motion.div>
                 </div>
 
                 {/* Columna 3 */}
-                <div className={`${styles.col} ${styles.col3}`}>
-                <motion.div className={styles.imgBoxMedium} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -50]) }}>
-                    <Image src={Picture6} fill alt="image" placeholder="blur" className={styles.img} />
+                <div className={`${styles.parallaxColumn} ${styles.parallaxColumnLast}`}>
+                <motion.div className={styles.imgBoxMedium} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -50]) }}
+                >
+                    <Image 
+                    src={Picture6} 
+                    fill 
+                    alt="image" 
+                    placeholder='blur' 
+                    style={{ objectFit: 'cover' }} 
+                    />
                 </motion.div>
+                
+                <motion.div className={styles.imgBoxLargePlus} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, 0]) }}
+                >
+                    <Image 
+                    src={Picture7} 
+                    fill 
+                    alt="image" 
+                    placeholder='blur' 
+                    style={{ objectFit: 'cover' }} 
+                    />
+                </motion.div>
+                </div>
 
-                <motion.div className={styles.imgBoxBig} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, 200]) }}>
-                    <Image src={Picture7} fill alt="image" placeholder="blur" className={styles.img} />
+                {/* Columnas adicionales para móvil - Solo visibles en móvil */}
+                <div className={styles.mobileOnlyColumn}>
+                <motion.div className={styles.imgBoxMobile} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -100]) }}
+                >
+                    <Image 
+                    src={Picture4} 
+                    fill 
+                    alt="image" 
+                    placeholder='blur' 
+                    style={{ objectFit: 'cover' }} 
+                    />
+                </motion.div>
+                </div>
+
+                <div className={styles.mobileOnlyColumn}>
+                <motion.div className={styles.imgBoxMobile} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, 50]) }}>
+                    <Image 
+                    src={Picture5} 
+                    fill 
+                    alt="image" 
+                    placeholder='blur' 
+                    style={{ objectFit: 'cover' }} 
+                    />
                 </motion.div>
                 </div>
             </motion.div>
