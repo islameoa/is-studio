@@ -331,7 +331,7 @@ export default function Home() {
                         <p className={styles.text1}>where self-improvement becomes a lifestyle.</p>
                         <div className={styles.text2} style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                             <span style={{ whiteSpace: 'nowrap', height: '10vh' }}>Built with</span>
-                            <div style={{ position: "relative", display: "inline-block", width: "20vw", height: "10vh", overflow: "hidden" }}>
+                            <div style={{ position: "relative", display: "inline-block", width: "32vw", height: "10vh", overflow: "hidden" }}>
                                 <AnimatePresence mode="wait">
                                     <motion.span
                                         key={words[index]}
