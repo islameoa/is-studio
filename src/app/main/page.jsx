@@ -1,16 +1,20 @@
 'use client';
 import styles from './styles.module.scss';
 import Picture1 from '../../../public/images/logo_h_big_nobg.png';
-import Picture2 from '../../../public/images/2.jpeg';
-import Picture3 from '../../../public/images/3.jpg';
-import Picture4 from '../../../public/images/4.jpg';
-import Picture5 from '../../../public/images/5.jpg';
-import Picture6 from '../../../public/images/6.jpg';
-import Picture7 from '../../../public/images/7.jpeg';
-import value_of_mom from '../../../public/images/value_of_momAI.png';
-import zarbiya_bag from '../../../public/images/zarbiya_bag.png';
-import jellaba from '../../../public/images/jellaba.jpeg';
+import Picture2 from '../../../public/images/abuelos-is-studio.jpg';
+import Picture3 from '../../../public/images/pants-is-studio.jpg';
+import Picture4 from '../../../public/images/rug-is-studio.jpg';
+import Picture5 from '../../../public/images/fez-hat-is-studio.jpg';
+import Picture6 from '../../../public/images/chaqueta-cuero-is-studio.jpeg';
+import Picture7 from '../../../public/images/basic-shirt-is-studio.jpg';
+import Picture8 from '../../../public/images/women-is-studio.jpg';
+import Picture9 from '../../../public/images/basic-tee-is-studio.jpg';
+import Picture10 from '../../../public/images/tyson-praying-is-studio.jpg';
+import Picture11 from '../../../public/images/diary-is-studio.jpg';
+import Picture12 from '../../../public/images/merc-kid-is-studio.jpg';
+import Picture13 from '../../../public/images/blgha-is-studio.jpg';
 import Image from 'next/image';
+import Link from "next/link";
 import { useScroll, useTransform, motion, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { useBackgroundColor } from '../../contexts/BackgroundColorContext';
@@ -137,7 +141,9 @@ export default function Home() {
                 </motion.div>
                 {/* <p className={styles.textVideo1}>“A new language of self-expression”</p> */}
                 <p className={styles.textVideo2}>Arab heritage meets modern design.</p>
-                <button type="button" className={styles.button}>EXPLORE</button>
+                <Link href="/productos">
+                    <button type="button" className={styles.button}>EXPLORE</button>
+                </Link>
             </div>
 
             {/* PARALLAX SECTION */}
@@ -159,7 +165,10 @@ export default function Home() {
             >
                 {/* Columna 1 */}
                 <div className={styles.parallaxColumn}>
-                <motion.div className={styles.imgBoxSmall} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -100]) }}
+                <motion.div className={`${styles.imgBoxSmall} ${styles.hoverContainer}`}
+                    style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -100]) }}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                 >
                     <Image 
                     src={Picture2} 
@@ -168,9 +177,15 @@ export default function Home() {
                     placeholder='blur' 
                     style={{ objectFit: 'cover' }} 
                     />
+                    <a href="/producto/slug-del-producto" className={styles.hoverOverlay}>
+                        <span className={styles.hoverTitle}>djellaba</span>
+                    </a>
                 </motion.div>
                 
-                <motion.div className={styles.imgBoxLarge} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -100]) }}
+                <motion.div className={`${styles.imgBoxLarge} ${styles.hoverContainer}`} 
+                    style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -100]) }}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                 >
                     <Image 
                     src={Picture3} 
@@ -179,23 +194,35 @@ export default function Home() {
                     placeholder='blur' 
                     style={{ objectFit: 'cover' }} 
                     />
+                    <a href="/producto/slug-del-producto" className={styles.hoverOverlay}>
+                        <span className={styles.hoverTitle}>rihla shorts</span>
+                    </a>
                 </motion.div>
                 </div>
 
                 {/* Columna 2 - Se oculta en móvil y se redistribuye */}
                 <div className={`${styles.parallaxColumn} ${styles.parallaxColumnMiddle}`}>
-                <motion.div className={styles.imgBoxExtraLarge} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -200]) }}
+                <motion.div className={`${styles.imgBoxExtraLarge} ${styles.hoverContainer}`} 
+                    style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -200]) }}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                 >
                     <Image 
                     src={Picture4} 
                     fill 
                     alt="image" 
-                    placeholder='blur' 
+                    placeholder='blur'
                     style={{ objectFit: 'cover' }} 
                     />
+                    <a href="/producto/slug-del-producto" className={styles.hoverOverlay}>
+                        <span className={styles.hoverTitle}>zarbiya</span>
+                    </a>
                 </motion.div>
                 
-                <motion.div className={styles.imgBoxExtraSmall} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, 100]) }}
+                <motion.div className={`${styles.imgBoxExtraSmall} ${styles.hoverContainer}`} 
+                    style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, 100]) }}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                 >
                     <Image 
                     src={Picture5} 
@@ -204,12 +231,18 @@ export default function Home() {
                     placeholder='blur' 
                     style={{ objectFit: 'cover' }} 
                     />
+                    <a href="/producto/slug-del-producto" className={styles.hoverOverlay}>
+                        <span className={styles.hoverTitle}>tarbush</span>
+                    </a>
                 </motion.div>
                 </div>
 
                 {/* Columna 3 */}
                 <div className={`${styles.parallaxColumn} ${styles.parallaxColumnLast}`}>
-                <motion.div className={styles.imgBoxMedium} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -50]) }}
+                <motion.div className={`${styles.imgBoxMedium} ${styles.hoverContainer}`} 
+                    style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -50]) }}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                 >
                     <Image 
                     src={Picture6} 
@@ -218,9 +251,15 @@ export default function Home() {
                     placeholder='blur' 
                     style={{ objectFit: 'cover' }} 
                     />
+                    <a href="/producto/slug-del-producto" className={styles.hoverOverlay}>
+                        <span className={styles.hoverTitle}>جَاكِيت</span>
+                    </a>
                 </motion.div>
                 
-                <motion.div className={styles.imgBoxLargePlus} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, 0]) }}
+                <motion.div className={`${styles.imgBoxLargePlus} ${styles.hoverContainer}`} 
+                    style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, 0]) }}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                 >
                     <Image 
                     src={Picture7} 
@@ -229,12 +268,18 @@ export default function Home() {
                     placeholder='blur' 
                     style={{ objectFit: 'cover' }} 
                     />
+                    <a href="/producto/slug-del-producto" className={styles.hoverOverlay}>
+                        <span className={styles.hoverTitle}>qamisa</span>
+                    </a>
                 </motion.div>
                 </div>
 
                 {/* Columnas adicionales para móvil - Solo visibles en móvil */}
                 <div className={styles.mobileOnlyColumn}>
-                <motion.div className={styles.imgBoxMobile} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -100]) }}
+                <motion.div className={`${styles.imgBoxMobile} ${styles.hoverContainer}`} 
+                    style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -100]) }}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                 >
                     <Image 
                     src={Picture4} 
@@ -243,11 +288,18 @@ export default function Home() {
                     placeholder='blur' 
                     style={{ objectFit: 'cover' }} 
                     />
+                    <a href="/producto/slug-del-producto" className={styles.hoverOverlay}>
+                        <span className={styles.hoverTitle}>Nombre del producto</span>
+                    </a>
                 </motion.div>
                 </div>
 
                 <div className={styles.mobileOnlyColumn}>
-                <motion.div className={styles.imgBoxMobile} style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, 50]) }}>
+                <motion.div className={`${styles.imgBoxMobile} ${styles.hoverContainer}`} 
+                    style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, 50]) }}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                >
                     <Image 
                     src={Picture5} 
                     fill 
@@ -255,6 +307,9 @@ export default function Home() {
                     placeholder='blur' 
                     style={{ objectFit: 'cover' }} 
                     />
+                    <a href="/producto/slug-del-producto" className={styles.hoverOverlay}>
+                        <span className={styles.hoverTitle}>Nombre del producto</span>
+                    </a>
                 </motion.div>
                 </div>
             </motion.div>
@@ -299,36 +354,36 @@ export default function Home() {
                     </motion.div>
                     <motion.div style={{ scale: scale5 }} className={styles.el}>
                         <div className={styles.imageContainer}>
-                            <Image src={Picture2} fill alt="image" placeholder='blur' />
+                            <Image src={Picture8} fill alt="image" placeholder='blur' />
                         </div>
                     </motion.div>
                     <motion.div style={{ scale: scale6 }} className={styles.el}>
                         <div className={styles.imageContainer}>
-                            <Image src={Picture3} fill alt="image" placeholder='blur' />
+                            <Image src={Picture11} fill alt="image" placeholder='blur' />
                         </div>
                     </motion.div>
                     <motion.div style={{ scale: scale5 }} className={styles.el}>
                         <div className={styles.imageContainer}>
-                            <Image src={Picture4} fill alt="image" placeholder='blur' />
+                            <Image src={Picture9} fill alt="image" placeholder='blur' />
                         </div>
                     </motion.div>
                     <motion.div style={{ scale: scale6 }} className={styles.el}>
                         <div className={styles.imageContainer}>
-                            <Image src={Picture5} fill alt="image" placeholder='blur' />
+                            <Image src={Picture10} fill alt="image" placeholder='blur' />
                         </div>
                     </motion.div>
                     <motion.div style={{ scale: scale8 }} className={styles.el}>
                         <div className={styles.imageContainer}>
-                            <Image src={Picture6} fill alt="image" placeholder='blur' />
+                            <Image src={Picture13} fill alt="image" placeholder='blur' />
                         </div>
                     </motion.div>
                     <motion.div style={{ scale: scale9 }} className={styles.el}>
                         <div className={styles.imageContainer}>
-                            <Image src={Picture7} fill alt="image" placeholder='blur' />
+                            <Image src={Picture12} fill alt="image" placeholder='blur' />
                         </div>
                     </motion.div>
                     <div className={styles.el}>
-                        <p className={styles.text1}>where self-improvement becomes a lifestyle.</p>
+                        <p className={styles.text1}>The light we give always finds its way back</p>
                         <div className={styles.text2} style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                             <span style={{ whiteSpace: 'nowrap', height: '10vh' }}>Built with</span>
                             <div style={{ position: "relative", display: "inline-block", width: "32vw", height: "10vh", overflow: "hidden" }}>

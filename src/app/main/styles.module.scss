@@ -210,14 +210,80 @@
     line-height: 1.5;
   }
   
-  .parallaxSection {
-    height: 150vh;
+  .hoverContainer {
     position: relative;
     overflow: hidden;
-    padding: 2rem;
+    cursor: pointer;
+  }
+
+  .hoverOverlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: background 0.35s ease, opacity 0.35s ease;
+    text-decoration: none;
+    z-index: 3;
   }
   
-  /* Títulos */
+  .hoverTitle {
+    position: relative;
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.35s ease, transform 0.35s ease, text-decoration 0.25s ease;
+    text-decoration: none;  /* por defecto sin subrayado */
+  }
+
+  .hoverTitle::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0%;
+    height: 2px;
+    background: white;
+    transition: width 0.3s ease;
+  }
+  
+  .hoverTitle:hover::after {
+    width: 100%;
+  }
+  .hoverContainer:hover .hoverOverlay {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.45);
+  }
+  .hoverContainer:hover .hoverTitle {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (hover: none) {
+    .hoverOverlay {
+      opacity: 1;
+      background: rgba(0, 0, 0, 0.4);
+    }
+    .hoverTitle {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hoverContainer:focus-within .hoverOverlay,
+  .hoverContainer:focus .hoverOverlay {
+    opacity: 1;
+    background: rgba(0,0,0,0.45);
+  }
+  .hoverContainer:focus-within .hoverTitle,
+  .hoverContainer:focus .hoverTitle {
+    opacity: 1;
+    transform: translateY(0);
+  }
   .collectionTitle {
     font-size: 3rem;
     font-weight: 700;
