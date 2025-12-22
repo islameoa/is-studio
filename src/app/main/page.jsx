@@ -137,11 +137,12 @@ export default function Home() {
             {/* PARALLAX SECTION */}
             <div ref={section2Ref} className={styles.parallaxSection}>
             <p className={styles.collectionTitle}>
-                Introducing the RIHLA COLLECTION - رحلة
+                Designing digital systems with intention
             </p>
             <p className={styles.collectionSubtitle}>
-                A collection inspired by the rich heritage of Morocco, <br />
-                blending traditional craftsmanship with modern aesthetics.
+                I build software at the intersection of culture, design and technology. <br/>
+                From interfaces to architecture, my work focuses on clarity, structure
+                and long-term impact.
             </p>
             
             <motion.div

@@ -69,7 +69,7 @@ export default function Contact() {
             style={{ fontFamily: "ModernSerif" }}
           >
             Ideas, collaborations or conversations.
-            If it resonates, let's talk.
+            If it resonates, let&apos;s talk.
           </p>
         </header>
 
@@ -77,7 +77,7 @@ export default function Contact() {
           <p className="text-lg"
             style={{ fontFamily: "ModernSerif" }}
           >
-            Message sent. I'll get back to you soon.
+            Message sent. I&apos;ll get back to you soon.
           </p>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-10">
