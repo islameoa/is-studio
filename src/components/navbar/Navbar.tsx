@@ -13,6 +13,7 @@ const Navbar = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [animateLinks, setAnimateLinks] = useState(false);
   const { currentBgColor } = useBackgroundColor();
+  const isDefaultBg = currentBgColor === "#F1ECE4";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,19 +44,6 @@ const Navbar = () => {
     setMenuOpen(false);
   };
 
-  // Function to determine if the background is dark
-  const isDarkBackground = (color: string) => {
-    // Convert hex to RGB
-    const hex = color.replace('#', '');
-    const r = parseInt(hex.substr(0, 2), 16);
-    const g = parseInt(hex.substr(2, 2), 16);
-    const b = parseInt(hex.substr(4, 2), 16);
-        
-    // Calculate luminance
-    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-    return luminance < 0.5;
-  };
-
   return (
     <div
       className="navbar-container"
@@ -69,7 +57,7 @@ const Navbar = () => {
           backgroundColor: `${currentBgColor}aa`, // Add transparency
           backdropFilter: 'blur(10px)',
           transition: 'background-color 0.8s ease-in-out',
-          color: isDarkBackground(currentBgColor) ? 'white' : 'black'
+          color: isDefaultBg ? "inherit" : "white",
         }}
       >
         <Link href={'/'} onClick={closeMenu}>
@@ -80,7 +68,7 @@ const Navbar = () => {
             placeholder='blur'
             height={85}
             style={{
-              filter: isDarkBackground(currentBgColor) ? 'brightness(0) invert(1)' : 'none'
+              filter: isDefaultBg ? 'none': 'brightness(0) invert(1)'
             }}
           />
         </Link>
@@ -89,9 +77,10 @@ const Navbar = () => {
         <ul 
           className={`nav-links-straight ${animateLinks ? 'animate' : ''} ${!scrolled ? 'show' : ''}`}
           style={{
-            color: isDarkBackground(currentBgColor) ? 'white' : 'black'
+            color: isDefaultBg ? 'black' : 'white'
           }}
         >
+          <li><Link href={'/projects'}>Prوjects</Link></li>
           <li><Link href={'/inspiration'}>Inسpiration</Link></li>
           <li><Link href={'/clothing'}>Clothإng</Link></li>
           <li><Link href={'/contact'}>Cوntact</Link></li>
@@ -102,7 +91,7 @@ const Navbar = () => {
           className={`hamburger ${menuOpen ? 'open' : ''}`}
           onClick={toggleMenu}
           style={{
-            color: isDarkBackground(currentBgColor) ? 'white' : 'black'
+            color: isDefaultBg ? 'black' : 'white'
           }}
         >
           <span></span>
@@ -112,14 +101,18 @@ const Navbar = () => {
 
         {/* Mobile Navigation Menu */}
         <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
-          <ul 
+          <ul
             className="mobile-nav-links"
             style={{
-              backgroundColor: `${currentBgColor}ee`,
-              backdropFilter: 'blur(10px)',
-              color: isDarkBackground(currentBgColor) ? 'white' : 'black'
+              ["--menu-bg" as any]: currentBgColor,
+              color: isDefaultBg ? 'black' : 'white'
             }}
           >
+            <li>
+              <Link href={'/projects'} onClick={closeMenu}>
+                Prوjects
+              </Link>
+            </li>
             <li>
               <Link href={'/inspiration'} onClick={closeMenu}>
                 Inسpiration

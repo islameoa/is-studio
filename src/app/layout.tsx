@@ -5,6 +5,7 @@ import Navbar from '../components/navbar/Navbar';
 import Footer from '../components/footer/Footer';
 import { BackgroundColorProvider } from '../contexts/BackgroundColorContext';
 import { AudioProvider } from '../contexts/BackgroundAudioContext';
+import "./tailwind.css";
 import '../styles/globals.scss';
 import React from 'react';
 import AudioButton from '../components/audioButton/AudioButton';

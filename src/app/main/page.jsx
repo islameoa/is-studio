@@ -38,19 +38,6 @@ export default function Home() {
         offset: ['start end', 'end start']
     });
 
-    // Function to determine if the background is dark
-    const isDarkBackground = (color) => {
-        // Convert hex to RGB
-        const hex = color.replace('#', '');
-        const r = parseInt(hex.substr(0, 2), 16);
-        const g = parseInt(hex.substr(2, 2), 16);
-        const b = parseInt(hex.substr(4, 2), 16);
-        
-        // Calculate luminance
-        const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-        return luminance < 0.5;
-    };
-
     const scale4 = useTransform(scrollYProgress, [0, 1], [1, 1]);
     const scale5 = useTransform(scrollYProgress, [0, 1], [1, 5]);
     const scale6 = useTransform(scrollYProgress, [0, 1], [1, 6]);
@@ -59,6 +46,7 @@ export default function Home() {
 
     const [index, setIndex] = useState(0);
     const { currentBgColor, setCurrentBgColor } = useBackgroundColor();
+    const isDefaultBg = currentBgColor === "#F1ECE4";
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -289,7 +277,7 @@ export default function Home() {
                     style={{ objectFit: 'cover' }} 
                     />
                     <a href="/producto/slug-del-producto" className={styles.hoverOverlay}>
-                        <span className={styles.hoverTitle}>Nombre del producto</span>
+                        <span className={styles.hoverTitle}>zarbiya</span>
                     </a>
                 </motion.div>
                 </div>
@@ -308,7 +296,7 @@ export default function Home() {
                     style={{ objectFit: 'cover' }} 
                     />
                     <a href="/producto/slug-del-producto" className={styles.hoverOverlay}>
-                        <span className={styles.hoverTitle}>Nombre del producto</span>
+                        <span className={styles.hoverTitle}>tarbush</span>
                     </a>
                 </motion.div>
                 </div>
@@ -347,8 +335,8 @@ export default function Home() {
                     <motion.div style={{ scale: scale4 }} className={styles.el}>
                         <div className={styles.imageContainer}>
                             <Image src={Picture1} fill alt="image" placeholder='blur' style={{
-                                filter: isDarkBackground(currentBgColor) ? 'brightness(0) invert(1)' : 'none'
-                                }}
+                                filter: isDefaultBg ? 'none': 'brightness(0) invert(1)'
+                            }}
                             />
                         </div>
                     </motion.div>
