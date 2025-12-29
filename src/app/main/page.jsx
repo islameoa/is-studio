@@ -129,7 +129,7 @@ export default function Home() {
                 </motion.div>
                 {/* <p className={styles.textVideo1}>“A new language of self-expression”</p> */}
                 <p className={styles.textVideo2}>Arab heritage meets modern design.</p>
-                <Link href="/productos">
+                <Link href="/projects">
                     <button type="button" className={styles.button}>EXPLORE</button>
                 </Link>
             </div>
@@ -166,7 +166,7 @@ export default function Home() {
                     placeholder='blur' 
                     style={{ objectFit: 'cover' }} 
                     />
-                    <a href="/producto/slug-del-producto" className={styles.hoverOverlay}>
+                    <a href="/clothing/djellaba" className={styles.hoverOverlay}>
                         <span className={styles.hoverTitle}>djellaba</span>
                     </a>
                 </motion.div>
@@ -183,7 +183,7 @@ export default function Home() {
                     placeholder='blur' 
                     style={{ objectFit: 'cover' }} 
                     />
-                    <a href="/producto/slug-del-producto" className={styles.hoverOverlay}>
+                    <a href="/clothing/rihla-shorts" className={styles.hoverOverlay}>
                         <span className={styles.hoverTitle}>rihla shorts</span>
                     </a>
                 </motion.div>
@@ -203,7 +203,7 @@ export default function Home() {
                     placeholder='blur'
                     style={{ objectFit: 'cover' }} 
                     />
-                    <a href="/producto/slug-del-producto" className={styles.hoverOverlay}>
+                    <a href="/clothing/zarbiya" className={styles.hoverOverlay}>
                         <span className={styles.hoverTitle}>zarbiya</span>
                     </a>
                 </motion.div>
@@ -220,7 +220,7 @@ export default function Home() {
                     placeholder='blur' 
                     style={{ objectFit: 'cover' }} 
                     />
-                    <a href="/producto/slug-del-producto" className={styles.hoverOverlay}>
+                    <a href="/clothing/tarbush" className={styles.hoverOverlay}>
                         <span className={styles.hoverTitle}>tarbush</span>
                     </a>
                 </motion.div>
@@ -240,7 +240,7 @@ export default function Home() {
                     placeholder='blur' 
                     style={{ objectFit: 'cover' }} 
                     />
-                    <a href="/producto/slug-del-producto" className={styles.hoverOverlay}>
+                    <a href="/clothing/jakitah" className={styles.hoverOverlay}>
                         <span className={styles.hoverTitle}>جَاكِيت</span>
                     </a>
                 </motion.div>
@@ -257,7 +257,7 @@ export default function Home() {
                     placeholder='blur' 
                     style={{ objectFit: 'cover' }} 
                     />
-                    <a href="/producto/slug-del-producto" className={styles.hoverOverlay}>
+                    <a href="/clothing/qamisa" className={styles.hoverOverlay}>
                         <span className={styles.hoverTitle}>qamisa</span>
                     </a>
                 </motion.div>
@@ -277,7 +277,7 @@ export default function Home() {
                     placeholder='blur' 
                     style={{ objectFit: 'cover' }} 
                     />
-                    <a href="/producto/slug-del-producto" className={styles.hoverOverlay}>
+                    <a href="/clothing/zarbiya" className={styles.hoverOverlay}>
                         <span className={styles.hoverTitle}>zarbiya</span>
                     </a>
                 </motion.div>
@@ -296,7 +296,7 @@ export default function Home() {
                     placeholder='blur' 
                     style={{ objectFit: 'cover' }} 
                     />
-                    <a href="/producto/slug-del-producto" className={styles.hoverOverlay}>
+                    <a href="/clothing/tarbush" className={styles.hoverOverlay}>
                         <span className={styles.hoverTitle}>tarbush</span>
                     </a>
                 </motion.div>

@@ -120,7 +120,7 @@ export default function InspirationPage() {
       ];
       return textHeights[index % textHeights.length];
     }
-
+    // image OR video
     const variants = [
       "aspect-[4/5]",
       "aspect-[3/4]",
@@ -128,7 +128,7 @@ export default function InspirationPage() {
       "aspect-[16/10]",
       "aspect-[5/6]",
     ];
-
+  
     return variants[index % variants.length];
   };
 
@@ -150,7 +150,7 @@ export default function InspirationPage() {
         </header>
 
         {/* MASONRY GRID (tipo Pinterest) */}
-        <div className="columns-2 sm:columns-3 lg:columns-4 xl:columns-6 gap-4 [column-fill:_balance] text-white">
+        <div className="columns-2 sm:columns-3 lg:columns-4 xl:columns-4 gap-4 [column-fill:_balance]">
           {query && (
             <>
               {isSearching && (
@@ -161,7 +161,7 @@ export default function InspirationPage() {
 
               {unsplashResults.map((p) => (
                 <div key={`unsplash-${p.id}`} className="group relative mb-4 break-inside-avoid">
-                  <div className="relative overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-950/60 aspect-[4/5]">
+                  <div className="relative overflow-hidden border border-zinc-800 bg-zinc-950/60 aspect-[4/5]">
                     <Image
                       src={p.urls.regular}
                       alt={p.alt}
@@ -228,7 +228,7 @@ export default function InspirationPage() {
               >
                 {/* CONTENIDO PRINCIPAL (imagen o texto) */}
                 <div
-                  className={`relative overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-950/60 ${item.type === "image" ? sizeClasses : ""}`}
+                  className={`relative overflow-hidden rounded-xl ${item.type === "image" ? sizeClasses : ""}`}
                 >
                   {item.type === "image" && item.imageUrl && (
                     <div className="relative w-full h-full">
@@ -247,18 +247,31 @@ export default function InspirationPage() {
                     <div
                       className={`flex items-center justify-center ${sizeClasses}`}
                     >
-                      <p className="text-sm md:text-base italic text-center leading-relaxed px-4">
+                      <p className="text-xl md:text-2xl italic text-center leading-snug px-6" style={{ fontFamily: "Modernserif" }}>
                         {item.textSnippet}
                       </p>
                     </div>
                   )}
 
+                  {item.type === "video" && item.videoUrl && (
+                    <div className="relative w-full h-full">
+                      <video
+                        src={item.videoUrl}
+                        muted
+                        loop
+                        playsInline
+                        autoPlay
+                        className="w-full h-full object-cover transition-transform duration-[900ms] group-hover:scale-[1.04]"
+                      />
+                    </div>
+                  )}
+
                   {/* Overlay sutil para dar feedback al hover */}
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
 
                 {/* VENTANA FLOTANTE AL HOVER */}
-                <div className="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-0 flex items-start justify-center">
+                <div className="pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute inset-0 flex items-start justify-center text-white">
                   <div className="mt-4 w-[92%] max-w-sm pointer-events-auto bg-zinc-950/95 border border-zinc-800 rounded-2xl shadow-2xl shadow-black/60 p-4 space-y-3 backdrop-blur-md">
                     <div className="flex flex-col gap-1">
                       <p className="text-[10px] uppercase tracking-[0.2em]">
@@ -274,9 +287,9 @@ export default function InspirationPage() {
                           {item.period && <span>{item.period}</span>}
                         </p>
                       )}
-                      <p className="text-[11px] line-clamp-2">
+                      {/* <p className="text-[11px] line-clamp-2">
                         {item.tags.join(" · ")}
-                      </p>
+                      </p> */}
                     </div>
 
                     {/* Selector de ángulo */}

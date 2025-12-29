@@ -10,7 +10,7 @@ const CLOTHING_ITEMS = [
     title: "Djellaba",
     subtitle: "Traditional silhouette reimagined",
     image: "/images/abuelos-is-studio.jpg",
-    slug: "djellaba-rihla",
+    slug: "djellaba",
   },
   {
     id: "rihla-shorts",
@@ -34,11 +34,11 @@ const CLOTHING_ITEMS = [
     slug: "tarbush",
   },
   {
-    id: "jacket",
+    id: "jakitah",
     title: "جاكيت",
     subtitle: "Between worlds",
     image: "/images/chaqueta-cuero-is-studio.jpeg",
-    slug: "jacket",
+    slug: "jakitah",
   },
   {
     id: "qamisa",

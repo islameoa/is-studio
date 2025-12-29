@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useBackgroundColor } from "../../contexts/BackgroundColorContext";
 import Image from "next/image";
+import Link from "next/link";
 
 const PROJECTS = [
   {
@@ -10,28 +11,32 @@ const PROJECTS = [
     title: "is-studio",
     description: "Creative studio blending culture, design and technology.",
     year: "2024",
-    img: "/images/is-studio-desktop.png"
+    img: "/images/is-studio-desktop.png",
+    href: "https://is-studio.es"
   },
   {
     id: "sinuo",
     title: "SINUO",
     description: "Perfume brand exploring memory, identity and scent.",
     year: "2026",
-    img: "/images/sinuo-desktop.png"
+    img: "/images/sinuo-desktop.png",
+    href: "https://sinuo.es"
   },
   {
     id: "rensssance",
     title: "RENSSSANCE",
     description: "Digital fashion label redefining virtual couture.",
     year: "2025",
-    img: "/images/rensssance-desktop.png"
+    img: "/images/rensssance-desktop.png",
+    href: "https://rensssance.com"
   },
   {
     id: "justice",
     title: "Departament de Justicia de Catalunya",
     description: "Full-stack developments in various apps for a private client.",
     year: "2022",
-    img: "/images/justicia-desktop.png"
+    img: "/images/justicia-desktop.png",
+    href: "https://justicia.gencat.cat/ca/ambits/reinsercio_i_serveis_penitenciaris/serveis_penitenciaris/els_centres_penitenciaris/comunicacions-distancia/accedir/"
   },
 ];
 
@@ -110,9 +115,11 @@ export default function Projects() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {filteredProjects.map((project) => (
-            <div
+            <Link
               key={project.id}
-              className="group rounded-3xl transition-colors duration-300"
+              href={project.href}
+              target="_blank"
+              className="group block rounded-3xl transition-colors duration-300 cursor-pointer"
               style={{
                 border: `1px solid ${ui.border}`,
               }}
@@ -146,7 +153,7 @@ export default function Projects() {
                   {project.description}
                 </p>
               </div>
-            </div>
+            </Link>
           ))}
 
           {filteredProjects.length === 0 && (
