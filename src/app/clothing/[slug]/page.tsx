@@ -142,11 +142,11 @@ const getProductBySlug = (slug: string) =>
     PRODUCTS.find((p) => p.slug === slug);
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
-  const product = getProductBySlug(params.slug);
-  if (!product) return notFound();
-
   const { currentBgColor } = useBackgroundColor();
   const isDefaultBg = currentBgColor === "#F1ECE4";
+
+  const product = getProductBySlug(params.slug);
+  if (!product) return notFound();
 
   const ui = {
     text: isDefaultBg ? "#000" : "#fff",
