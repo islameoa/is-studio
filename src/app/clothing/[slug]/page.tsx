@@ -15,7 +15,7 @@ export type Product = {
     details?: string[];
   };
   
-export const products: Product[] = [
+const products: Product[] = [
     {
         slug: "djellaba",
         title: "Djellaba Rihla",
