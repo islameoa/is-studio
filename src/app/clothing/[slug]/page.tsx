@@ -15,7 +15,7 @@ export type Product = {
     details?: string[];
   };
   
-export const PRODUCTS: Product[] = [
+export const products: Product[] = [
     {
         slug: "djellaba",
         title: "Djellaba Rihla",
@@ -139,7 +139,7 @@ export const PRODUCTS: Product[] = [
 ];
   
 const getProductBySlug = (slug: string) =>
-    PRODUCTS.find((p) => p.slug === slug);
+    products.find((p) => p.slug === slug);
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
   const { currentBgColor } = useBackgroundColor();
