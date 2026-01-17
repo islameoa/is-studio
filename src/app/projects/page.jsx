@@ -20,7 +20,7 @@ const PROJECTS = [
     description: "Perfume brand exploring memory, identity and scent.",
     year: "2026",
     img: "/images/sinuo-desktop.png",
-    href: "https://sinuo.es"
+    href: "https://sinuoparfums.com"
   },
   {
     id: "rensssance",
