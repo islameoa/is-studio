@@ -21,13 +21,12 @@ import { CSS_COLORS } from '../../constants/css-colors';
 
 const words = ['purpose', 'إحسان', 'love', 'بركة', 'meaning', 'توكل', 'wisdom', 'تقوى'];
 
-// 6 projects — desktop order: 0,1,2 / 3,4,5 (left-to-right, top-to-bottom)
 const projects = [
-    { image: Picture3, title: 'sinuo',        link: '/projects/sinuo',       desktopHeight: '42vh' },
-    { image: Picture4, title: 'zarbiya',      link: '/projects/zarbiya',     desktopHeight: '60vh' },
-    { image: Picture6, title: 'is studio',    link: '/projects/is-studio',   desktopHeight: '48vh' },
-    { image: Picture2, title: 'abuelos',      link: '/projects/abuelos',     desktopHeight: '50vh' },
     { image: Picture7, title: 'by dani larbi',link: '/projects/bydanilarbi', desktopHeight: '55vh' },
+    { image: Picture3, title: 'sinuo',        link: '/projects/sinuo',       desktopHeight: '42vh' },
+    { image: Picture6, title: 'is studio',    link: '/projects/is-studio',   desktopHeight: '48vh' },
+    { image: Picture4, title: 'zarbiya',      link: '/projects/zarbiya',     desktopHeight: '60vh' },
+    { image: Picture2, title: 'abuelos',      link: '/projects/abuelos',     desktopHeight: '50vh' },
     { image: Picture8, title: 'women',        link: '/projects/women',       desktopHeight: '38vh' },
 ];
 
@@ -57,7 +56,16 @@ export default function Home() {
     const yCol1 = useTransform(parallaxScrollProgress, [0, 1], [0, -100]);
     const yCol2 = useTransform(parallaxScrollProgress, [0, 1], [0, -200]);
     const yCol3 = useTransform(parallaxScrollProgress, [0, 1], [0,  -50]);
-    const yZero = useTransform(parallaxScrollProgress, [0, 1], [0,    0]);
+    // Subtle mobile values — enough to feel alive without being too much on small screens
+    const yMobileCol1 = useTransform(parallaxScrollProgress, [0, 1], [0,  -50]);
+    const yMobileCol2 = useTransform(parallaxScrollProgress, [0, 1], [0,  -25]);
+
+    // Welcome section parallax
+    const { scrollYProgress: welcomeScrollProgress } = useScroll({
+        target: section3Ref,
+        offset: ['start end', 'end start']
+    });
+    const yWelcome = useTransform(welcomeScrollProgress, [0, 1], [60, -60]);
 
     const [isMobile, setIsMobile] = useState(false);
     const [index, setIndex] = useState(0);
@@ -117,8 +125,9 @@ export default function Home() {
     // Mobile:  2 cols → projects in reading order 0,1 / 2,3 / 4,5
     const columns = isMobile
         ? [
-            { indices: [0, 2, 4], y: yCol1, paddingTop: 0 },
-            { indices: [1, 3, 5], y: yCol3, paddingTop: '2rem' },
+            // No paddingTop offset on mobile — columns start flush, parallax does the stagger
+            { indices: [0, 2, 4], y: yMobileCol1, paddingTop: 0 },
+            { indices: [1, 3, 5], y: yMobileCol2, paddingTop: 0 },
           ]
         : [
             { indices: [0, 3], y: yCol1, paddingTop: 0 },
@@ -163,7 +172,6 @@ export default function Home() {
                         Your browser does not support the video tag.
                     </video>
                 </motion.div>
-                {/* <p className={styles.textVideo1}>“A new language of self-expression”</p> */}
                 <p className={styles.textVideo2}>Arab heritage meets modern design.</p>
                 <Link href="/projects">
                     <button type="button" className={styles.button}>EXPLORE</button>
@@ -172,7 +180,6 @@ export default function Home() {
 
             {/* PARALLAX SECTION */}
             <div ref={section2Ref} className={styles.parallaxSection}>
-                {/* Header is z-indexed above the grid so parallax images never overlap it */}
                 <div className={styles.parallaxSectionHeader}>
                     <p className={styles.collectionTitle}>
                         Meaningful websites for creatives and businesses
@@ -207,7 +214,7 @@ export default function Home() {
                                     key={projIdx}
                                     className={`${styles.imgBox} ${styles.hoverContainer}`}
                                     style={{
-                                        y: isMobile ? yZero : col.y,
+                                        y: col.y,
                                         height: isMobile ? '42vw' : projects[projIdx].desktopHeight,
                                     }}
                                     whileHover={{ scale: 1.05 }}
@@ -232,28 +239,20 @@ export default function Home() {
 
             <div 
                 ref={section3Ref}
-                style={{
-                    height: '100vh',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '3rem',
-                    fontWeight: 'bold',
-                    color: 'white',
-                    textAlign: 'center',
-                    padding: '2rem'
-                }}
+                className={styles.welcomeBigDiv}
             >
-                <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: true }}
-                >
-                    <div className={styles.welcomeDiv}>
-                        <p className={styles.welcomeTitle}>Welcome to IS___STUDIO</p>
-                        <p className={styles.welcomeSubtitle}>A modern expression of tradition. <br></br> Every piece merges Moroccan craft, Arab elegance, and minimalist clarity.  <br></br> Designed to inspire movement—toward yourself, your goals, your essence.</p>
-                    </div>
+                <motion.div style={{ y: yWelcome }}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1 }}
+                        viewport={{ once: true }}
+                    >
+                        <div className={styles.welcomeDiv}>
+                            <p className={styles.welcomeTitle}>Welcome to IS___STUDIO</p>
+                            <p className={styles.welcomeSubtitle}>A modern expression of tradition. <br></br> Every piece merges Moroccan craft, Arab elegance, and minimalist clarity.  <br></br> Designed to inspire movement—toward yourself, your goals, your essence.</p>
+                        </div>
+                    </motion.div>
                 </motion.div>
             </div>
             
