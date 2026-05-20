@@ -7,12 +7,12 @@ import Link from "next/link";
 
 const PROJECTS = [
   {
-    id: "is-studio",
-    title: "is-studio",
-    description: "Creative studio blending culture, design and technology.",
-    year: "2024",
-    img: "/images/is-studio-desktop.png",
-    href: "https://is-studio.es"
+    id: "bydanilarbi",
+    title: "Bydanilarbi",
+    description: "E-commerce platform for the creative Dani Larbi.",
+    year: "2026",
+    img: "/images/bydanilarbi.png",
+    href: "https://bydanilarbi.com"
   },
   {
     id: "sinuo",
@@ -21,6 +21,14 @@ const PROJECTS = [
     year: "2026",
     img: "/images/sinuo-desktop.png",
     href: "https://sinuoparfums.com"
+  },
+  {
+    id: "is-studio",
+    title: "is-studio",
+    description: "Creative studio blending culture, design and technology.",
+    year: "2024",
+    img: "/images/is-studio-desktop.png",
+    href: "https://is-studio.es"
   },
   {
     id: "rensssance",

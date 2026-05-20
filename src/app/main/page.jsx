@@ -2,11 +2,10 @@
 import styles from './styles.module.scss';
 import Picture1 from '../../../public/images/logo_h_big_nobg.png';
 import Picture2 from '../../../public/images/abuelos-is-studio.jpg';
-import Picture3 from '../../../public/images/pants-is-studio.jpg';
+import Picture3 from '../../../public/images/sinuo-desktop.png';
 import Picture4 from '../../../public/images/rug-is-studio.jpg';
-import Picture5 from '../../../public/images/fez-hat-is-studio.jpg';
-import Picture6 from '../../../public/images/chaqueta-cuero-is-studio.jpeg';
-import Picture7 from '../../../public/images/basic-shirt-is-studio.jpg';
+import Picture6 from '../../../public/images/is-studio-desktop.png';
+import Picture7 from '../../../public/images/bydanilarbi.png';
 import Picture8 from '../../../public/images/women-is-studio.jpg';
 import Picture9 from '../../../public/images/basic-tee-is-studio.jpg';
 import Picture10 from '../../../public/images/tyson-praying-is-studio.jpg';
@@ -21,6 +20,16 @@ import { useBackgroundColor } from '../../contexts/BackgroundColorContext';
 import { CSS_COLORS } from '../../constants/css-colors';
 
 const words = ['purpose', 'إحسان', 'love', 'بركة', 'meaning', 'توكل', 'wisdom', 'تقوى'];
+
+// 6 projects — desktop order: 0,1,2 / 3,4,5 (left-to-right, top-to-bottom)
+const projects = [
+    { image: Picture3, title: 'sinuo',        link: '/projects/sinuo',       desktopHeight: '42vh' },
+    { image: Picture4, title: 'zarbiya',      link: '/projects/zarbiya',     desktopHeight: '60vh' },
+    { image: Picture6, title: 'is studio',    link: '/projects/is-studio',   desktopHeight: '48vh' },
+    { image: Picture2, title: 'abuelos',      link: '/projects/abuelos',     desktopHeight: '50vh' },
+    { image: Picture7, title: 'by dani larbi',link: '/projects/bydanilarbi', desktopHeight: '55vh' },
+    { image: Picture8, title: 'women',        link: '/projects/women',       desktopHeight: '38vh' },
+];
 
 export default function Home() {
     const container = useRef(null);
@@ -44,6 +53,13 @@ export default function Home() {
     const scale8 = useTransform(scrollYProgress, [0, 1], [1, 8]);
     const scale9 = useTransform(scrollYProgress, [0, 1], [1, 9]);
 
+    // Parallax column y-offsets — always called unconditionally (hook rules)
+    const yCol1 = useTransform(parallaxScrollProgress, [0, 1], [0, -100]);
+    const yCol2 = useTransform(parallaxScrollProgress, [0, 1], [0, -200]);
+    const yCol3 = useTransform(parallaxScrollProgress, [0, 1], [0,  -50]);
+    const yZero = useTransform(parallaxScrollProgress, [0, 1], [0,    0]);
+
+    const [isMobile, setIsMobile] = useState(false);
     const [index, setIndex] = useState(0);
     const { currentBgColor, setCurrentBgColor } = useBackgroundColor();
     const isDefaultBg = currentBgColor === "#F1ECE4";
@@ -53,6 +69,13 @@ export default function Home() {
             setIndex((prevIndex) => (prevIndex + 1) % words.length);
         }, 4000);
         return () => clearInterval(interval);
+    }, []);
+
+    useEffect(() => {
+        const check = () => setIsMobile(window.innerWidth <= 768);
+        check();
+        window.addEventListener('resize', check);
+        return () => window.removeEventListener('resize', check);
     }, []);
 
     useEffect(() => {
@@ -90,9 +113,22 @@ export default function Home() {
         document.body.style.transition = 'background-color 0.8s ease-in-out';
     }, [currentBgColor]);
 
+    // Desktop: 3 cols → projects in reading order 0,1,2 / 3,4,5
+    // Mobile:  2 cols → projects in reading order 0,1 / 2,3 / 4,5
+    const columns = isMobile
+        ? [
+            { indices: [0, 2, 4], y: yCol1, paddingTop: 0 },
+            { indices: [1, 3, 5], y: yCol3, paddingTop: '2rem' },
+          ]
+        : [
+            { indices: [0, 3], y: yCol1, paddingTop: 0 },
+            { indices: [1, 4], y: yCol2, paddingTop: '4rem' },
+            { indices: [2, 5], y: yCol3, paddingTop: '2rem' },
+          ];
+
     return (
         <>
-            <div 
+            <div
                 ref={section1Ref}
                 style={{
                     height: '100vh',
@@ -136,172 +172,62 @@ export default function Home() {
 
             {/* PARALLAX SECTION */}
             <div ref={section2Ref} className={styles.parallaxSection}>
-            <p className={styles.collectionTitle}>
-                Designing digital systems with intention
-            </p>
-            <p className={styles.collectionSubtitle}>
-                I build software at the intersection of culture, design and technology. <br/>
-                From interfaces to architecture, my work focuses on clarity, structure
-                and long-term impact.
-            </p>
-            
-            <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 1 }}
-                viewport={{ once: true }}
-                className={styles.parallaxGrid}
-            >
-                {/* Columna 1 */}
-                <div className={styles.parallaxColumn}>
-                <motion.div className={`${styles.imgBoxSmall} ${styles.hoverContainer}`}
-                    style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -100]) }}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                >
-                    <Image 
-                    src={Picture2} 
-                    fill 
-                    alt="image" 
-                    placeholder='blur' 
-                    style={{ objectFit: 'cover' }} 
-                    />
-                    <a href="/clothing/djellaba" className={styles.hoverOverlay}>
-                        <span className={styles.hoverTitle}>djellaba</span>
-                    </a>
-                </motion.div>
-                
-                <motion.div className={`${styles.imgBoxLarge} ${styles.hoverContainer}`} 
-                    style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -100]) }}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                >
-                    <Image 
-                    src={Picture3} 
-                    fill 
-                    alt="image" 
-                    placeholder='blur' 
-                    style={{ objectFit: 'cover' }} 
-                    />
-                    <a href="/clothing/rihla-shorts" className={styles.hoverOverlay}>
-                        <span className={styles.hoverTitle}>rihla shorts</span>
-                    </a>
-                </motion.div>
+                {/* Header is z-indexed above the grid so parallax images never overlap it */}
+                <div className={styles.parallaxSectionHeader}>
+                    <p className={styles.collectionTitle}>
+                        Meaningful websites for creatives and businesses
+                    </p>
+                    <p className={styles.collectionSubtitle}>
+                        I build software at the intersection of culture, design and technology. <br/>
+                        From interfaces to architecture, my work focuses on clarity, structure
+                        and long-term impact.
+                    </p>
+                    <div className={styles.infoButtonDiv}>
+                        <Link href="/contact">
+                            <button type="button" className={styles.infoButton}>GET IN TOUCH</button>
+                        </Link>
+                    </div>
                 </div>
 
-                {/* Columna 2 - Se oculta en móvil y se redistribuye */}
-                <div className={`${styles.parallaxColumn} ${styles.parallaxColumnMiddle}`}>
-                <motion.div className={`${styles.imgBoxExtraLarge} ${styles.hoverContainer}`} 
-                    style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -200]) }}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 1 }}
+                    viewport={{ once: true }}
+                    className={styles.parallaxGrid}
                 >
-                    <Image 
-                    src={Picture4} 
-                    fill 
-                    alt="image" 
-                    placeholder='blur'
-                    style={{ objectFit: 'cover' }} 
-                    />
-                    <a href="/clothing/zarbiya" className={styles.hoverOverlay}>
-                        <span className={styles.hoverTitle}>zarbiya</span>
-                    </a>
+                    {columns.map((col, colIdx) => (
+                        <div
+                            key={colIdx}
+                            className={styles.parallaxColumn}
+                            style={{ paddingTop: col.paddingTop }}
+                        >
+                            {col.indices.map(projIdx => (
+                                <motion.div
+                                    key={projIdx}
+                                    className={`${styles.imgBox} ${styles.hoverContainer}`}
+                                    style={{
+                                        y: isMobile ? yZero : col.y,
+                                        height: isMobile ? '42vw' : projects[projIdx].desktopHeight,
+                                    }}
+                                    whileHover={{ scale: 1.05 }}
+                                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                                >
+                                    <Image
+                                        src={projects[projIdx].image}
+                                        fill
+                                        alt={projects[projIdx].title}
+                                        placeholder="blur"
+                                        style={{ objectFit: 'cover' }}
+                                    />
+                                    <a href={projects[projIdx].link} className={styles.hoverOverlay}>
+                                        <span className={styles.hoverTitle}>{projects[projIdx].title}</span>
+                                    </a>
+                                </motion.div>
+                            ))}
+                        </div>
+                    ))}
                 </motion.div>
-                
-                <motion.div className={`${styles.imgBoxExtraSmall} ${styles.hoverContainer}`} 
-                    style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, 100]) }}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                >
-                    <Image 
-                    src={Picture5} 
-                    fill 
-                    alt="image" 
-                    placeholder='blur' 
-                    style={{ objectFit: 'cover' }} 
-                    />
-                    <a href="/clothing/tarbush" className={styles.hoverOverlay}>
-                        <span className={styles.hoverTitle}>tarbush</span>
-                    </a>
-                </motion.div>
-                </div>
-
-                {/* Columna 3 */}
-                <div className={`${styles.parallaxColumn} ${styles.parallaxColumnLast}`}>
-                <motion.div className={`${styles.imgBoxMedium} ${styles.hoverContainer}`} 
-                    style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -50]) }}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                >
-                    <Image 
-                    src={Picture6} 
-                    fill 
-                    alt="image" 
-                    placeholder='blur' 
-                    style={{ objectFit: 'cover' }} 
-                    />
-                    <a href="/clothing/jakitah" className={styles.hoverOverlay}>
-                        <span className={styles.hoverTitle}>جَاكِيت</span>
-                    </a>
-                </motion.div>
-                
-                <motion.div className={`${styles.imgBoxLargePlus} ${styles.hoverContainer}`} 
-                    style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, 0]) }}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                >
-                    <Image 
-                    src={Picture7} 
-                    fill 
-                    alt="image" 
-                    placeholder='blur' 
-                    style={{ objectFit: 'cover' }} 
-                    />
-                    <a href="/clothing/qamisa" className={styles.hoverOverlay}>
-                        <span className={styles.hoverTitle}>qamisa</span>
-                    </a>
-                </motion.div>
-                </div>
-
-                {/* Columnas adicionales para móvil - Solo visibles en móvil */}
-                <div className={styles.mobileOnlyColumn}>
-                <motion.div className={`${styles.imgBoxMobile} ${styles.hoverContainer}`} 
-                    style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, -100]) }}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                >
-                    <Image 
-                    src={Picture4} 
-                    fill 
-                    alt="image" 
-                    placeholder='blur' 
-                    style={{ objectFit: 'cover' }} 
-                    />
-                    <a href="/clothing/zarbiya" className={styles.hoverOverlay}>
-                        <span className={styles.hoverTitle}>zarbiya</span>
-                    </a>
-                </motion.div>
-                </div>
-
-                <div className={styles.mobileOnlyColumn}>
-                <motion.div className={`${styles.imgBoxMobile} ${styles.hoverContainer}`} 
-                    style={{ y: useTransform(parallaxScrollProgress, [0, 1], [0, 50]) }}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                >
-                    <Image 
-                    src={Picture5} 
-                    fill 
-                    alt="image" 
-                    placeholder='blur' 
-                    style={{ objectFit: 'cover' }} 
-                    />
-                    <a href="/clothing/tarbush" className={styles.hoverOverlay}>
-                        <span className={styles.hoverTitle}>tarbush</span>
-                    </a>
-                </motion.div>
-                </div>
-            </motion.div>
             </div>
 
             <div 
@@ -324,9 +250,9 @@ export default function Home() {
                     transition={{ duration: 1 }}
                     viewport={{ once: true }}
                 >
-                    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%'}}>
-                        <p style={{fontFamily:'canela', fontSize:'4rem', float:'right'}}>Welcome to IS___STUDIO</p>
-                        <p style={{fontFamily:'NeueHaas', fontSize:'2rem'}}>A modern expression of tradition. <br></br> Every piece merges Moroccan craft, Arab elegance, and minimalist clarity.  <br></br> Designed to inspire movement—toward yourself, your goals, your essence.</p>
+                    <div className={styles.welcomeDiv}>
+                        <p className={styles.welcomeTitle}>Welcome to IS___STUDIO</p>
+                        <p className={styles.welcomeSubtitle}>A modern expression of tradition. <br></br> Every piece merges Moroccan craft, Arab elegance, and minimalist clarity.  <br></br> Designed to inspire movement—toward yourself, your goals, your essence.</p>
                     </div>
                 </motion.div>
             </div>

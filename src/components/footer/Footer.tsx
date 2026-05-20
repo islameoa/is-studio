@@ -35,7 +35,7 @@ const Footer = () => {
                     color: isDefaultBg ? 'black' : 'white'
                 }}
             >
-                is___studio © 2025
+                is___studio © 2026
             </div>
         </div>
     );

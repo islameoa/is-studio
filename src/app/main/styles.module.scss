@@ -106,6 +106,8 @@
     }
 }
 
+/* ── Video section ──────────────────────────────────────────── */
+
 .textVideo1{
     display: inline-block;
     font-size: larger;
@@ -145,7 +147,7 @@
     font-weight: 400;
     font-size: small;
     left: 50%;
-    transform: translateX(-50%);  
+    transform: translateX(-50%);
 }
 
 .button:hover {
@@ -154,75 +156,93 @@
     border: 1px solid white;
 }
 
-.imageLayout {
-    display: flex;
-    height: 100vh;
-    width: 100vw;
-}
+/* ── Parallax section ───────────────────────────────────────── */
 
-.leftImageContainer {
+.parallaxSection {
     position: relative;
-    width: 60vw;
-    height: 100%;
+    overflow: hidden;
+    padding: 2rem;
 }
 
-.rightImageColumn {
-    display: flex;
-    flex-direction: column;
-    width: 40vw;
-    height: 100%;
-}
-
-.rightImageContainer {
+/* Header (title + subtitle + button) sits above the grid images */
+.parallaxSectionHeader {
     position: relative;
-    width: 100%;
-    height: 50%;
-}
-
-.image {
-    object-fit: cover;
+    z-index: 10;
+    text-align: center;
+    padding-bottom: 2rem;
 }
 
 .collectionTitle {
     font-family: 'Canela', serif;
-    font-size: 4rem;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #333;
 }
 
 .collectionSubtitle {
     font-family: 'ModernSerif', serif;
-    font-size: 2rem;
+    font-size: 1.25rem;
+    color: #666;
+    line-height: 1.6;
     margin-bottom: 2rem;
-    font-weight: lighter;
-    color: #333;
-    line-height: 1.5;
 }
 
-.parallaxSection {
-    height: 150vh;
+.infoButton {
+    padding: 0.75rem 1.5rem;
+    font-weight: 400;
+    font-size: small;
+    color: black;
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.infoButton:hover {
+    background-color: white;
+    color: black;
+}
+
+.infoButtonDiv {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+/* Grid */
+.parallaxGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 1rem 2rem 2rem;
+}
+
+.parallaxColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Single image box — height set via inline style per project */
+.imgBox {
     position: relative;
+    width: 100%;
+    min-height: 160px;
+    border-radius: 15px;
     overflow: hidden;
-    padding: 2rem;
-  }
-  
-  .collectionTitle {
-    font-family: 'Canela', serif;
-    font-size: 4rem;
-  }
-  
-  .collectionSubtitle {
-    font-family: 'ModernSerif', serif;
-    font-size: 2rem;
-    color: #333;
-    line-height: 1.5;
-  }
-  
-  .hoverContainer {
+}
+
+/* ── Hover overlay ──────────────────────────────────────────── */
+
+.hoverContainer {
     position: relative;
     overflow: hidden;
     cursor: pointer;
-  }
+}
 
-  .hoverOverlay {
+.hoverOverlay {
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0);
@@ -233,20 +253,20 @@
     transition: background 0.35s ease, opacity 0.35s ease;
     text-decoration: none;
     z-index: 3;
-  }
-  
-  .hoverTitle {
+}
+
+.hoverTitle {
     position: relative;
     color: white;
     font-size: 1.4rem;
     font-weight: 600;
     opacity: 0;
     transform: translateY(10px);
-    transition: opacity 0.35s ease, transform 0.35s ease, text-decoration 0.25s ease;
-    text-decoration: none;  /* por defecto sin subrayado */
-  }
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    text-decoration: none;
+}
 
-  .hoverTitle::after {
+.hoverTitle::after {
     content: "";
     position: absolute;
     left: 0;
@@ -255,319 +275,163 @@
     height: 2px;
     background: white;
     transition: width 0.3s ease;
-  }
-  
-  .hoverTitle:hover::after {
+}
+
+.hoverTitle:hover::after {
     width: 100%;
-  }
-  .hoverContainer:hover .hoverOverlay {
+}
+
+.hoverContainer:hover .hoverOverlay {
     opacity: 1;
     background: rgba(0, 0, 0, 0.45);
-  }
-  .hoverContainer:hover .hoverTitle {
+}
+
+.hoverContainer:hover .hoverTitle {
     opacity: 1;
     transform: translateY(0);
-  }
+}
 
-  @media (hover: none) {
+/* Always-visible labels on touch screens */
+@media (hover: none) {
     .hoverOverlay {
-      opacity: 1;
-      background: rgba(0, 0, 0, 0.4);
+        opacity: 1;
+        background: rgba(0, 0, 0, 0.4);
     }
     .hoverTitle {
-      opacity: 1;
-      transform: translateY(0);
+        opacity: 1;
+        transform: translateY(0);
     }
-  }
+}
 
-  .hoverContainer:focus-within .hoverOverlay,
-  .hoverContainer:focus .hoverOverlay {
+.hoverContainer:focus-within .hoverOverlay,
+.hoverContainer:focus .hoverOverlay {
     opacity: 1;
-    background: rgba(0,0,0,0.45);
-  }
-  .hoverContainer:focus-within .hoverTitle,
-  .hoverContainer:focus .hoverTitle {
+    background: rgba(0, 0, 0, 0.45);
+}
+.hoverContainer:focus-within .hoverTitle,
+.hoverContainer:focus .hoverTitle {
     opacity: 1;
     transform: translateY(0);
-  }
-  .collectionTitle {
-    font-size: 3rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 1rem;
-    color: #333;
-  }
-  
-  .collectionSubtitle {
-    font-size: 1.25rem;
-    text-align: center;
-    margin-bottom: 3rem;
-    color: #666;
-    line-height: 1.6;
-  }
-  
-  /* Grid Container */
-  .parallaxGrid {
-    position: relative;
-    height: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 2rem;
-    padding: 2rem;
-  }
-  
-  /* Columnas */
-  .parallaxColumn {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-  
-  .parallaxColumnMiddle {
-    padding-top: 4rem;
-  }
-  
-  .parallaxColumnLast {
-    padding-top: 2rem;
-  }
-  
-  /* Cajas de Imágenes - Desktop */
-  .imgBoxSmall {
-    position: relative;
-    width: 100%;
-    height: 40vh;
-    border-radius: 15px;
-    overflow: hidden;
-  }
-  
-  .imgBoxLarge {
-    position: relative;
-    width: 100%;
-    height: 50vh;
-    border-radius: 15px;
-    overflow: hidden;
-  }
-  
-  .imgBoxMedium {
-    position: relative;
-    width: 100%;
-    height: 45vh;
-    border-radius: 15px;
-    overflow: hidden;
-  }
-  
-  .imgBoxLargePlus {
-    position: relative;
-    width: 100%;
-    height: 55vh;
-    border-radius: 15px;
-    overflow: hidden;
-  }
-  
-  .imgBoxExtraLarge {
-    position: relative;
-    width: 100%;
-    height: 60vh;
-    border-radius: 15px;
-    overflow: hidden;
-  }
-  
-  .imgBoxExtraSmall {
-    position: relative;
-    width: 100%;
-    height: 35vh;
-    border-radius: 15px;
-    overflow: hidden;
-  }
-  
-  /* Columnas solo para móvil */
-  .mobileOnlyColumn {
-    display: none;
-  }
-  
-  .imgBoxMobile {
-    position: relative;
-    width: 100%;
-    height: 45vh;
-    border-radius: 15px;
-    overflow: hidden;
-  }
-  
-  /* Media Queries - Tablet */
-  @media (max-width: 1024px) {
-    .parallaxSection {
-      height: 120vh;
-      padding: 1.5rem;
-    }
-    
-    .collectionTitle {
-      font-size: 2.5rem;
-    }
-    
-    .collectionSubtitle {
-      font-size: 1.1rem;
-    }
-    
+}
+
+/* ── texto debajo de parallax ─────────────────────────────────────────────────── */
+
+.welcomeDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.welcomeTitle {
+  font-family: 'Canela', serif;
+  font-size: 4rem;
+  float: right;
+}
+
+.welcomeSubtitle {
+  font-family: 'NeueHaas', sans-serif;
+  font-size: 2rem;
+}
+
+/* ── Tablet ─────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
     .parallaxGrid {
-      gap: 1.5rem;
-      padding: 1.5rem;
+        gap: 1.5rem;
+        padding: 1rem 1.5rem 1.5rem;
     }
-    
-    .imgBoxSmall {
-      height: 35vh;
-    }
-    
-    .imgBoxLarge {
-      height: 45vh;
-    }
-    
-    .imgBoxMedium {
-      height: 40vh;
-    }
-    
-    .imgBoxLargePlus {
-      height: 50vh;
-    }
-    
-    .imgBoxExtraLarge {
-      height: 55vh;
-    }
-    
-    .imgBoxExtraSmall {
-      height: 30vh;
-    }
-  }
-  
-  /* Media Queries - Móvil */
-  @media (max-width: 768px) {
-    .parallaxSection {
-      height: auto;
-      min-height: 100vh;
-      padding: 1rem;
-    }
-    
+
     .collectionTitle {
-      font-size: 2rem;
-      margin-bottom: 0.75rem;
+        font-size: 2.5rem;
     }
-    
+
     .collectionSubtitle {
-      font-size: 1rem;
-      margin-bottom: 2rem;
-      padding: 0 1rem;
+        font-size: 1.1rem;
     }
-    
-    /* Grid de 2 columnas en móvil */
+}
+
+/* ── Mobile ─────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+    .parallaxSection {
+        padding: 1rem;
+    }
+
+    .collectionTitle {
+        font-size: 2rem;
+    }
+
+    .collectionSubtitle {
+        font-size: 1rem;
+        padding: 0 0.5rem;
+    }
+
+    /* 2-column grid — JS controls how many column divs are rendered */
     .parallaxGrid {
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      padding: 1rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 0.5rem 1rem 1rem;
     }
-    
-    /* Ajustar padding de columnas en móvil */
-    .parallaxColumnMiddle,
-    .parallaxColumnLast {
-      padding-top: 0;
-    }
-    
-    /* Ocultar columna del medio en móvil */
-    .parallaxColumnMiddle {
-      display: none;
-    }
-    
-    /* Mostrar columnas móviles */
-    .mobileOnlyColumn {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    
-    /* Ajustar alturas para móvil */
-    .imgBoxSmall,
-    .imgBoxLarge,
-    .imgBoxMedium,
-    .imgBoxLargePlus,
-    .imgBoxMobile {
-      height: 35vh;
-    }
-    
+
     .parallaxColumn {
-      gap: 1rem;
+        gap: 1rem;
+        /* Reset desktop padding-top — inline style still applies for slight stagger */
     }
-  }
-  
-  /* Media Queries - Móvil pequeño */
-  @media (max-width: 480px) {
-    .collectionTitle {
-      font-size: 1.75rem;
+
+    .imgBox {
+        border-radius: 10px;
+        min-height: 120px;
     }
-    
+
     .collectionSubtitle {
-      font-size: 0.9rem;
+        margin-bottom: 1.5rem;
     }
-    
+}
+
+/* ── Small mobile (portrait) ────────────────────────────────── */
+
+@media (max-width: 480px) {
+    .collectionTitle {
+        font-size: 1.75rem;
+    }
+
+    .collectionSubtitle {
+        font-size: 0.9rem;
+    }
+
     .parallaxGrid {
-      gap: 0.75rem;
-      padding: 0.5rem;
+        gap: 0.75rem;
+        padding: 0.5rem;
     }
-    
-    .imgBoxSmall,
-    .imgBoxLarge,
-    .imgBoxMedium,
-    .imgBoxLargePlus,
-    .imgBoxMobile {
-      height: 30vh;
-      border-radius: 10px;
-    }
-  }
-  
-  /* Optimización para aspect ratio en móvil */
-  @media (max-width: 768px) and (orientation: portrait) {
-    .imgBoxSmall,
-    .imgBoxLarge,
-    .imgBoxMedium,
-    .imgBoxLargePlus,
-    .imgBoxMobile {
-      height: 40vw;
-      min-height: 200px;
-      max-height: 35vh;
-    }
-  }
-  
-  @media (max-width: 768px) and (orientation: landscape) {
-    .parallaxSection {
-      height: auto;
-    }
-    
-    .imgBoxSmall,
-    .imgBoxLarge,
-    .imgBoxMedium,
-    .imgBoxLargePlus,
-    .imgBoxMobile {
-      height: 50vh;
-    }
-  }  
+}
+
+/* ── Zoom-scroll section typography ────────────────────────── */
 
 @media (min-width: 768px) {
-    .text1{
+    .text1 {
         white-space: nowrap;
     }
 }
 
 @media (max-width: 768px) {
-    .collectionTitle {
-        font-size: 3rem;
-    }
-    .collectionSubtitle {
-        font-size: 1.5rem;
-    }
-    .text1{
-      font-size: 2rem !important;
+    .text1 {
+        font-size: 2rem !important;
     }
     .text2 {
-      justify-content: space-between !important;
-      height: 60vh !important;
-      font-size: 2rem !important;
-      width: 57vw !important;
+        justify-content: space-between !important;
+        height: 60vh !important;
+        font-size: 2rem !important;
+        width: 57vw !important;
+    }
+    .welcomeTitle {
+        font-family: 'Canela', serif;
+        font-size: 3rem;
+        float: right;
+    }
+    .welcomeSubtitle {
+        font-size: 1.5rem;
     }
 }
